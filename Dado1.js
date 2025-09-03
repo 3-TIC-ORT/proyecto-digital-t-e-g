@@ -4,14 +4,30 @@ function generarNumeroAleatorio() {
   
   function lanzarDados() {
     const dadosAtaque = document.querySelectorAll('.dadoataque');
+    const dadosDefensa = document.querySelectorAll('.dadodefensa');
+    
+    let ataqueResultados = [];
+    let defensaResultados = [];
+  
     dadosAtaque.forEach(dado => {
-      dado.textContent = generarNumeroAleatorio();
+      const resultado = generarNumeroAleatorio();
+      dado.textContent = resultado;
+      ataqueResultados.push(resultado);
     });
   
-    const dadosDefensa = document.querySelectorAll('.dadodefensa');
     dadosDefensa.forEach(dado => {
-      dado.textContent = generarNumeroAleatorio();
+      const resultado = generarNumeroAleatorio();
+      dado.textContent = resultado;
+      defensaResultados.push(resultado);
     });
+  
+    const enlaceGanador = document.querySelector('.rectangulo-rojo a');
+    if (enlaceGanador) {
+      const resultadosAtaque = ataqueResultados.join(',');
+      const resultadosDefensa = defensaResultados.join(',');
+      
+      enlaceGanador.href = `Ganador.html?ataque=${resultadosAtaque}&defensa=${resultadosDefensa}`;
+    }
   }
   
   window.onload = lanzarDados;
