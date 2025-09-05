@@ -9,25 +9,27 @@ function lanzarDados() {
   let ataqueResultados = [];
   let defensaResultados = [];
 
+
   dadosAtaque.forEach(dado => {
-    const resultado = generarNumeroAleatorio();
-    dado.textContent = resultado;
-    ataqueResultados.push(resultado);
+      const resultado = generarNumeroAleatorio();
+      dado.textContent = resultado;
+      ataqueResultados.push(resultado);
   });
+
 
   dadosDefensa.forEach(dado => {
-    const resultado = generarNumeroAleatorio();
-    dado.textContent = resultado;
-    defensaResultados.push(resultado);
+      const resultado = generarNumeroAleatorio();
+      dado.textContent = resultado;
+      defensaResultados.push(resultado);
   });
 
-  const enlaceGanador = document.querySelector('.rectangulo-rojo a');
-  if (enlaceGanador) {
-    const resultadosAtaque = ataqueResultados.join(',');
-    const resultadosDefensa = defensaResultados.join(',');
-    
-    enlaceGanador.href = `Ganador2.html?ataque=${resultadosAtaque}&defensa=${resultadosDefensa}`;
-  }
+  localStorage.setItem('ataqueDados', JSON.stringify(ataqueResultados));
+  localStorage.setItem('defensaDados', JSON.stringify(defensaResultados));
+}
+
+
+function irAGanador() {
+  window.location.href = 'Ganador2.html';
 }
 
 window.onload = lanzarDados;
