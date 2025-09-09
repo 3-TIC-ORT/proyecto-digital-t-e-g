@@ -1,29 +1,29 @@
 let fichas = {
     USA: 1,
-    Canadá: 1,
-    México: 1,
-    Brasil: 1,
-    Argentina: 1,
-    Uruguay: 1,
-    Granbretaña: 1,
-    Francia: 1,
-    España: 1,
-    Italia: 1,
-    Alemania: 1,
     Rusia: 1,
     Egipto: 1,
     Etiopía: 1,
+    Uruguay: 1,
+    Argentina: 1,
+    España: 1,
+    Francia: 1,
+    Granbretaña: 1,
+    Canadá: 1,
+    Alemania: 1,
     Sudáfrica: 1,
     China: 1,
     Japón: 1,
     Armenia: 1,
     India: 1,
-    Australia: 1
+    Australia: 1,
+    México: 1,
+    Brasil: 1,
+    Italia: 1
 };
 
 let fichasDisponibles = 8;
-const paisesJugador1 = ["USA", "Canadá", "México", "Brasil", "Argentina", "Uruguay", "Granbretaña", "Francia", "España", "Italia"];
-const paisesJugador2 = ["Alemania", "Rusia", "Egipto", "Etiopía", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia"];
+const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
 function actualizarDisplay() {
     let fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
