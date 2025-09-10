@@ -22,8 +22,8 @@ let fichas = {
 };
 
 let fichasDisponibles = 8;
-const paisesJugador1 = ["USA", "Canadá", "México", "Brasil", "Argentina", "Uruguay", "Granbretaña", "Francia", "España", "Italia"];
-const paisesJugador2 = ["Alemania", "Rusia", "Egipto", "Etiopía", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia"];
+const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
 function actualizarDisplay() {
     let fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
