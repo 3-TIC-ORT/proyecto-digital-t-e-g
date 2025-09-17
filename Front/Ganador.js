@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const ataqueDadosJSON = localStorage.getItem('ataqueDados');
     const defensaDadosJSON = localStorage.getItem('defensaDados');
 
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dadosAtaque = JSON.parse(ataqueDadosJSON);
     const dadosDefensa = JSON.parse(defensaDadosJSON);
 
-    // Ordenar los dados de mayor a menor
     dadosAtaque.sort((a, b) => b - a);
     dadosDefensa.sort((a, b) => b - a);
 
@@ -19,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let victoriasDefensa = 0;
     let duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
 
-    // Lógica para determinar el ganador de cada duelo
+    // Lógica corregida: Si el dado de ataque es mayor, gana ataque. Si no, gana defensa (incluyendo empates).
     for (let i = 0; i < duelos; i++) {
         if (dadosAtaque[i] > dadosDefensa[i]) {
             victoriasAtaque++;
@@ -28,21 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Determinar el ganador de la batalla
+    // Determinar el ganador final según tus reglas
     let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
+    } else if (victoriasDefensa >= 2) {
+        ganador = 'Defensa';
     } else {
+        // En caso de que nadie haya ganado al menos 2 duelos, la defensa gana.
         ganador = 'Defensa';
     }
 
-    // Guardar los resultados en localStorage para que el Mapa pueda usarlos
     const resultadosBatalla = {
         fichasPerdidasAtaque: victoriasDefensa,
         fichasPerdidasDefensa: victoriasAtaque
     };
     localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
 
-    // Mostrar el nombre del ganador en la página
     document.getElementById('nombre-ganador').textContent = ganador;
 });
