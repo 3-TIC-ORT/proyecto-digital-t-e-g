@@ -1,62 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Definir los países de cada jugador
     const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
     const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    
+    let paisAtacante = null;
 
-    // Obtener los datos de fichas y el turno actual desde localStorage
-    const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
-    let turnoJugador = localStorage.getItem('turnoJugador') || 'jugador2';
-
-    // Función para actualizar el estado de los botones y el encabezado
-    function actualizarDisplay() {
-        // Actualizar el texto del encabezado según el turno del jugador
-        const encabezado = document.querySelector('.encabezado h1');
-        if (encabezado) {
-            if (turnoJugador === 'jugador2') {
-                encabezado.textContent = 'JUGADOR 2, SELECCIONA TU PAÍS ATACANTE';
-            } else {
-                encabezado.textContent = 'JUGADOR 1, SELECCIONA TU PAÍS DEFENSOR';
+    function calcularResultadosBatalla() {
+        const paisAtacante = localStorage.getItem('paisAtacante');
+        const paisDefensor = localStorage.getItem('paisDefensor');
+        const resultadosBatalla = JSON.parse(localStorage.getItem('resultadosBatalla'));
+        let fichas = JSON.parse(localStorage.getItem('fichas'));
+    
+        if (paisAtacante && paisDefensor && resultadosBatalla && fichas) {
+            
+            // Resta las fichas perdidas según la información guardada en resultadosBatalla
+            if (fichas[paisAtacante] !== undefined) {
+                fichas[paisAtacante] -= resultadosBatalla.fichasPerdidasAtaque;
             }
+            if (fichas[paisDefensor] !== undefined) {
+                fichas[paisDefensor] -= resultadosBatalla.fichasPerdidasDefensa;
+            }
+    
+            localStorage.setItem('fichas', JSON.stringify(fichas));
+            
+            // Limpia los datos de la batalla para el siguiente turno
+            localStorage.removeItem('paisAtacante');
+            localStorage.removeItem('paisDefensor');
+            localStorage.removeItem('ataqueDados');
+            localStorage.removeItem('defensaDados');
+            localStorage.removeItem('resultadosBatalla');
+            localStorage.removeItem('ganadorBatalla');
         }
-        
-        // Actualizar el texto y el estado de cada botón de país
+    }
+
+    function actualizarBotones() {
+        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
         const botones = document.querySelectorAll(".rectangulo-gris button");
+
         botones.forEach(boton => {
-            // Mostrar la cantidad de fichas de cada país
-            if (fichasGuardadas[boton.id] !== undefined) {
+            if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
                 boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
             }
 
-            // Deshabilitar los botones del jugador que no está en turno
-            if (turnoJugador === 'jugador2') {
-                boton.disabled = !paisesJugador2.includes(boton.id);
+            if (!paisAtacante) {
+                // Habilita solo los países del Jugador 2 que tengan más de 1 ficha para atacar
+                boton.disabled = !paisesJugador2.includes(boton.id) || fichasGuardadas[boton.id] <= 1;
             } else {
+                // Una vez seleccionado el atacante, habilita solo los países del Jugador 1
                 boton.disabled = !paisesJugador1.includes(boton.id);
             }
         });
     }
 
-    // Manejar el evento de clic en los botones
     const botones = document.querySelectorAll(".rectangulo-gris button");
     botones.forEach(boton => {
         boton.addEventListener("click", () => {
-            if (turnoJugador === 'jugador2') {
-                if (paisesJugador2.includes(boton.id)) {
-                    localStorage.setItem('paisAtacante', boton.id);
-                    turnoJugador = 'jugador1';
-                    localStorage.setItem('turnoJugador', turnoJugador);
-                    actualizarDisplay();
+            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
+
+            if (!paisAtacante) {
+                if (paisesJugador2.includes(boton.id) && fichasGuardadas[boton.id] > 1) {
+                    paisAtacante = boton.id;
+                    localStorage.setItem('paisAtacante', paisAtacante);
+                    actualizarBotones();
                 }
             } else {
                 if (paisesJugador1.includes(boton.id)) {
                     localStorage.setItem('paisDefensor', boton.id);
-                    localStorage.setItem('turnoJugador', 'jugador2');
                     window.location.href = "Dado2.html";
                 }
             }
         });
     });
 
-    // Llamar a la función al cargar la página para mostrar los datos actualizados
-    actualizarDisplay();
+    calcularResultadosBatalla();
+    actualizarBotones();
 });
