@@ -1,46 +1,48 @@
-function determinarGanador() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const ataqueStr = urlParams.get('ataque');
-  const defensaStr = urlParams.get('defensa');
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (!ataqueStr || !defensaStr) {
-    document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos.';
-    return;
-  }
+    const ataqueDadosJSON = localStorage.getItem('ataqueDados');
+    const defensaDadosJSON = localStorage.getItem('defensaDados');
 
-  const dadosAtaque = ataqueStr.split(',').map(Number);
-  const dadosDefensa = defensaStr.split(',').map(Number);
+    if (!ataqueDadosJSON || !defensaDadosJSON) {
+        document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de la batalla.';
+        return;
+    }
 
-  dadosAtaque.sort((a, b) => b - a);
-  dadosDefensa.sort((a, b) => b - a);
+    const dadosAtaque = JSON.parse(ataqueDadosJSON);
+    const dadosDefensa = JSON.parse(defensaDadosJSON);
 
-  let victoriasAtacante = 0;
-  let victoriasDefensa = 0;
-  const duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
+    // Ordenar los dados de mayor a menor
+    dadosAtaque.sort((a, b) => b - a);
+    dadosDefensa.sort((a, b) => b - a);
 
-  for (let i = 0; i < duelos; i++) {
-      if (dadosAtaque[i] > dadosDefensa[i]) {
-          victoriasAtacante++;
-      } else {
-          victoriasDefensa++;
-      }
-  }
-  
-  const resultadoElement = document.getElementById('nombre-ganador');
-  let resultadoBatalla = {
-      fichasPerdidasAtaque: 0,
-      fichasPerdidasDefensa: 0
-  };
+    let victoriasAtaque = 0;
+    let victoriasDefensa = 0;
+    let duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
 
-  if (victoriasAtacante >= 2) {
-      resultadoElement.textContent = 'Ataque';
-      resultadoBatalla.fichasPerdidasDefensa = victoriasAtacante;
-  } else {
-      resultadoElement.textContent = 'Defensa';
-      resultadoBatalla.fichasPerdidasAtaque = victoriasDefensa;
-  }
+    // Lógica para determinar el ganador de cada duelo
+    for (let i = 0; i < duelos; i++) {
+        if (dadosAtaque[i] > dadosDefensa[i]) {
+            victoriasAtaque++;
+        } else {
+            victoriasDefensa++;
+        }
+    }
 
-  localStorage.setItem('resultadoBatalla', JSON.stringify(resultadoBatalla));
-}
+    // Determinar el ganador de la batalla
+    let ganador;
+    if (victoriasAtaque >= 2) {
+        ganador = 'Ataque';
+    } else {
+        ganador = 'Defensa';
+    }
 
-window.onload = determinarGanador;
+    // Guardar los resultados en localStorage para que el Mapa pueda usarlos
+    const resultadosBatalla = {
+        fichasPerdidasAtaque: victoriasDefensa,
+        fichasPerdidasDefensa: victoriasAtaque
+    };
+    localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
+
+    // Mostrar el nombre del ganador en la página
+    document.getElementById('nombre-ganador').textContent = ganador;
+});
