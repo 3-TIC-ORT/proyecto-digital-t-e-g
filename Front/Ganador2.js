@@ -10,9 +10,9 @@ window.onload = function() {
     const dadosAtaque = JSON.parse(ataqueResultadosJSON);
     const dadosDefensa = JSON.parse(defensaResultadosJSON);
 
-    // Ordenar los dados de mayor a menor para la comparación
-    dadosAtaque.sort((a, b) => b - a);
-    dadosDefensa.sort((a, b) => b - a);
+    // Se ha eliminado la línea de ordenamiento de dados para cumplir con la regla de comparación de orden.
+    // dadosAtaque.sort((a, b) => b - a);
+    // dadosDefensa.sort((a, b) => b - a);
 
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;

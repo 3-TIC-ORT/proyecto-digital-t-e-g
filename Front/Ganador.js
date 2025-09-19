@@ -1,47 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ataqueDadosJSON = localStorage.getItem('ataqueDados');
-    const defensaDadosJSON = localStorage.getItem('defensaDados');
-
-    if (!ataqueDadosJSON || !defensaDadosJSON) {
-        document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de la batalla.';
+    const ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
+    const defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
+    
+    // Si no hay datos, muestra un error
+    if (ataqueDados.length === 0 || defensaDados.length === 0) {
+        document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
         return;
     }
 
-    const dadosAtaque = JSON.parse(ataqueDadosJSON);
-    const dadosDefensa = JSON.parse(defensaDadosJSON);
-
-    dadosAtaque.sort((a, b) => b - a);
-    dadosDefensa.sort((a, b) => b - a);
+    // Ordenar los dados de mayor a menor para la comparación
+    ataqueDados.sort((a, b) => b - a);
+    defensaDados.sort((a, b) => b - a);
 
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;
-    let duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
-
-    // Lógica corregida: Si el dado de ataque es mayor, gana ataque. Si no, gana defensa (incluyendo empates).
-    for (let i = 0; i < duelos; i++) {
-        if (dadosAtaque[i] > dadosDefensa[i]) {
+    
+    // Compara los dados uno a uno
+    for (let i = 0; i < Math.min(ataqueDados.length, defensaDados.length); i++) {
+        // La defensa gana los empates
+        if (ataqueDados[i] > defensaDados[i]) {
             victoriasAtaque++;
         } else {
             victoriasDefensa++;
         }
     }
 
-    // Determinar el ganador final según tus reglas
+    // Determina el ganador final
     let ganador;
-    if (victoriasAtaque >= 2) {
+    if (victoriasAtaque > victoriasDefensa) {
         ganador = 'Ataque';
-    } else if (victoriasDefensa >= 2) {
-        ganador = 'Defensa';
     } else {
-        // En caso de que nadie haya ganado al menos 2 duelos, la defensa gana.
         ganador = 'Defensa';
     }
-
-    const resultadosBatalla = {
+    
+    // Guarda el resultado de la batalla en localStorage para que Mapa3.js lo use
+    localStorage.setItem('resultadosBatalla', JSON.stringify({
         fichasPerdidasAtaque: victoriasDefensa,
-        fichasPerdidasDefensa: victoriasAtaque
-    };
-    localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
+        fichasPerdidasDefensa: victoriasAtaque,
+        ganador: ganador
+    }));
 
     document.getElementById('nombre-ganador').textContent = ganador;
 });

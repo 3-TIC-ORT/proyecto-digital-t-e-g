@@ -2,33 +2,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
     const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
     
-    let paisAtacante = null;
+    // Inicializar fichas si no existen
+    if (!localStorage.getItem('fichas')) {
+        let fichasIniciales = {};
+        [...paisesJugador1, ...paisesJugador2].forEach(pais => {
+            fichasIniciales[pais] = 5; 
+        });
+        localStorage.setItem('fichas', JSON.stringify(fichasIniciales));
+    }
 
+    let paisAtacante = localStorage.getItem('paisAtacante');
+    
     function calcularResultadosBatalla() {
-        const paisAtacante = localStorage.getItem('paisAtacante');
         const paisDefensor = localStorage.getItem('paisDefensor');
         const resultadosBatalla = JSON.parse(localStorage.getItem('resultadosBatalla'));
         let fichas = JSON.parse(localStorage.getItem('fichas'));
 
         if (paisAtacante && paisDefensor && resultadosBatalla && fichas) {
-            
+            const fichasPerdidasAtacante = resultadosBatalla.fichasPerdidasAtaque;
+            const fichasPerdidasDefensor = resultadosBatalla.fichasPerdidasDefensa;
+
+            // Restar las fichas perdidas de cada país
             if (fichas[paisAtacante] !== undefined) {
-                fichas[paisAtacante] -= resultadosBatalla.fichasPerdidasAtaque;
+                fichas[paisAtacante] -= fichasPerdidasAtacante;
             }
             if (fichas[paisDefensor] !== undefined) {
-                fichas[paisDefensor] -= resultadosBatalla.fichasPerdidasDefensa;
+                fichas[paisDefensor] -= fichasPerdidasDefensor;
             }
 
             localStorage.setItem('fichas', JSON.stringify(fichas));
             
+            // Limpiar localStorage
             localStorage.removeItem('paisAtacante');
             localStorage.removeItem('paisDefensor');
-            localStorage.removeItem('ataqueDados');
-            localStorage.removeItem('defensaDados');
             localStorage.removeItem('resultadosBatalla');
         }
     }
-
+    
     function actualizarBotones() {
         const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
         const botones = document.querySelectorAll(".rectangulo-gris button");
@@ -39,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!paisAtacante) {
-                boton.disabled = !paisesJugador1.includes(boton.id);
+                boton.disabled = !paisesJugador1.includes(boton.id) || fichasGuardadas[boton.id] < 2;
             } else {
                 boton.disabled = !paisesJugador2.includes(boton.id);
             }
