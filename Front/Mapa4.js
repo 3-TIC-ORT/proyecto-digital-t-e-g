@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
-            // Mostrar fichas
-            if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
-                boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
-            }
+            // **CORRECCIÓN:** Calcula las fichas, usando 1 como valor por defecto.
+            const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
+                               ? fichasGuardadas[boton.id] 
+                               : 1;
+
+            boton.textContent = `${boton.id} (${cantidadFichas})`;
 
             if (!paisAtacante) {
                 // Seleccionar Atacante: Desbloquear todos los países del JUGADOR 2

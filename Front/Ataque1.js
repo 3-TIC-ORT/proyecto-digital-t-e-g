@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función para actualizar la visualización de los botones
   function actualizarBotones() {
       botones.forEach(boton => {
-          // Actualizar el texto del botón con el número de fichas
-          if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
-              boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
-          }
+          // **CORRECCIÓN:** Calcula las fichas, usando 1 como valor por defecto.
+          const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
+                               ? fichasGuardadas[boton.id] 
+                               : 1;
+
+          boton.textContent = `${boton.id} (${cantidadFichas})`;
 
           // Habilitar o deshabilitar según la lógica de ataque/defensa
           if (!paisAtacante) {
@@ -46,6 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
-  // Inicializar el estado de los botones
+  // Llamar a la función al cargar la página
   actualizarBotones();
 });

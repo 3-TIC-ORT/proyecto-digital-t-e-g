@@ -45,10 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
-            // Mostrar fichas actualizadas
-            if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
-                boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
-            }
+            // CORRECCIÓN: Si el valor no está en localStorage, asume 1 ficha.
+            const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
+                                   ? fichasGuardadas[boton.id] 
+                                   : 1;
+
+            boton.textContent = `${boton.id} (${cantidadFichas})`;
+            // FIN DE LA CORRECCIÓN.
 
             if (!paisAtacante) {
                 // Seguir atacando: Habilita CUALQUIER país del JUGADOR 2

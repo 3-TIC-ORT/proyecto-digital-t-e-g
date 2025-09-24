@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('resultadosBatalla');
             localStorage.removeItem('ganadorBatalla');
             
-            // Reestablecer paisAtacante a null para la siguiente selección de ataque
+            // Reestablecer paisAtacante a null para el siguiente ataque
             paisAtacante = null; 
         }
     }
@@ -42,14 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
-            // Mostrar fichas actualizadas
-            if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
-                boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
-            }
+            // **CORRECCIÓN:** Calcula las fichas, usando 1 como valor por defecto.
+            const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
+                               ? fichasGuardadas[boton.id] 
+                               : 1;
+
+            boton.textContent = `${boton.id} (${cantidadFichas})`;
 
             if (!paisAtacante) {
                 // Seleccionar Atacante: Habilita CUALQUIER país del JUGADOR 1
-                // (La verificación de fichas > 1 se hace en el evento click, no en la deshabilitación visual inicial)
                 boton.disabled = !paisesJugador1.includes(boton.id);
             } else {
                 // Seleccionar Defensor: Habilita JUGADOR 2
