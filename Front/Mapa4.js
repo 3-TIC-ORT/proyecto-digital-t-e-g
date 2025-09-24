@@ -1,70 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Definir los países de cada jugador
+    // Jugador 1 (Defensa)
     const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+    // Jugador 2 (Ataque)
     const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
-    // Obtener las referencias a los elementos del DOM
-    const encabezado = document.querySelector('.encabezado h1');
-    const botonesContainer = document.querySelector('.rectangulo-gris');
-
-    // Obtener el estado del juego desde localStorage
-    let fichas = JSON.parse(localStorage.getItem('fichas'));
+    // En Mapa4, siempre se empieza sin atacante seleccionado (a menos que se vuelva a cargar con uno)
     let paisAtacante = localStorage.getItem('paisAtacante');
 
-    // Definir el mensaje estático
-    const mensajeEncabezado = "Jugador 2, es tu turno de atacar. Haz clic sobre uno de tus países para iniciar el ataque.";
-
-    // Función para actualizar la visualización de los botones y el encabezado
-    function actualizarEstadoPantalla() {
-        // Cargar las fichas guardadas
-        fichas = JSON.parse(localStorage.getItem('fichas'));
-        if (!fichas) {
-            console.error("No se encontraron las fichas en localStorage.");
-            return;
-        }
-
+    function actualizarBotones() {
+        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
         const botones = document.querySelectorAll(".rectangulo-gris button");
 
-        // Mantener el mensaje del encabezado estático
-        encabezado.textContent = mensajeEncabezado;
-        
-        if (!paisAtacante) {
-            // Fase de ataque: Jugador 2 elige país para atacar
-            botones.forEach(boton => {
-                boton.textContent = `${boton.id} (${fichas[boton.id]})`;
+        botones.forEach(boton => {
+            // Mostrar fichas
+            if (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) {
+                boton.textContent = `${boton.id} (${fichasGuardadas[boton.id]})`;
+            }
+
+            if (!paisAtacante) {
+                // Seleccionar Atacante: Desbloquear todos los países del JUGADOR 2
                 boton.disabled = !paisesJugador2.includes(boton.id);
-            });
-        } else {
-            // Fase de defensa: Jugador 1 elige país para defender
-            botones.forEach(boton => {
-                const esPaisDefensa = paisesJugador1.includes(boton.id);
-                const esPaisAtacante = boton.id === paisAtacante;
-                boton.disabled = !esPaisDefensa || esPaisAtacante;
-                boton.textContent = `${boton.id} (${fichas[boton.id]})`;
-            });
-        }
+            } else {
+                // Seleccionar Defensor: Habilita JUGADOR 1
+                boton.disabled = !paisesJugador1.includes(boton.id);
+            }
+        });
     }
 
-    // Agregar un solo event listener al contenedor de botones
-    botonesContainer.addEventListener("click", (event) => {
-        const botonClickeado = event.target;
-        if (botonClickeado.tagName === 'BUTTON' && !botonClickeado.disabled) {
-            if (!paisAtacante) {
-                // Primer clic: Jugador 2 selecciona el país atacante
-                paisAtacante = botonClickeado.id;
-                localStorage.setItem('paisAtacante', paisAtacante);
-                actualizarEstadoPantalla();
-            } else {
-                // Segundo clic: Jugador 1 selecciona el país defensor
-                const paisDefensor = botonClickeado.id;
-                localStorage.setItem('paisDefensor', paisDefensor);
+    // Manejador de clics
+    const botones = document.querySelectorAll(".rectangulo-gris button");
+    botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
 
-                // Redirigir a la página de los dados
-                window.location.href = "Dado2.html";
+            if (!paisAtacante) {
+                // Paso 1: Selecciona País ATACANTE (Jugador 2)
+                if (paisesJugador2.includes(boton.id)) {
+                    // Verificar que el país seleccionado tenga más de 1 ficha
+                    if (fichasGuardadas[boton.id] > 1) {
+                        paisAtacante = boton.id;
+                        localStorage.setItem('paisAtacante', paisAtacante);
+                        actualizarBotones();
+                    } else {
+                        alert('Debes seleccionar un país con al menos 2 fichas para atacar.');
+                    }
+                }
+            } else {
+                // Paso 2: Selecciona País DEFENSOR (Jugador 1)
+                if (paisesJugador1.includes(boton.id)) {
+                    localStorage.setItem('paisDefensor', boton.id);
+                    // Navegar al lanzador de dados del Jugador 2
+                    window.location.href = "Dado2.html"; 
+                }
             }
-        }
+        });
     });
 
-    // Llamar a la función para inicializar la pantalla
-    actualizarEstadoPantalla();
+    actualizarBotones();
 });

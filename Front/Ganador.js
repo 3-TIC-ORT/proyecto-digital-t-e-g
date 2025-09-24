@@ -2,43 +2,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
     const defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
     
-    // Si no hay datos, muestra un error
     if (ataqueDados.length === 0 || defensaDados.length === 0) {
         document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
         return;
     }
 
-    // Ordenar los dados de mayor a menor para la comparación
+    // ¡CRÍTICO!: Ordenar los dados de mayor a menor para la comparación por duelos.
     ataqueDados.sort((a, b) => b - a);
     defensaDados.sort((a, b) => b - a);
 
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;
     
-    // Compara los dados uno a uno
-    for (let i = 0; i < Math.min(ataqueDados.length, defensaDados.length); i++) {
-        // La defensa gana los empates
+    const duelos = Math.min(ataqueDados.length, defensaDados.length);
+
+    // Lógica de duelos: Ataque pierde la ficha si el dado es menor o igual (Defensa gana el empate)
+    for (let i = 0; i < duelos; i++) {
         if (ataqueDados[i] > defensaDados[i]) {
-            victoriasAtaque++;
+            victoriasAtaque++; // Defensa pierde 1 ficha
         } else {
-            victoriasDefensa++;
+            victoriasDefensa++; // Ataque pierde 1 ficha (por empate o ser menor)
         }
     }
 
-    // Determina el ganador final
+    // Determinar el ganador final de la Batalla: Mínimo 2 duelos ganados.
     let ganador;
-    if (victoriasAtaque > victoriasDefensa) {
+    if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
     } else {
-        ganador = 'Defensa';
+        ganador = 'Defensa'; // Si el ataque no gana 2, gana la defensa.
     }
-    
-    // Guarda el resultado de la batalla en localStorage para que Mapa3.js lo use
-    localStorage.setItem('resultadosBatalla', JSON.stringify({
-        fichasPerdidasAtaque: victoriasDefensa,
-        fichasPerdidasDefensa: victoriasAtaque,
-        ganador: ganador
-    }));
 
+    // Guardar los resultados para la resta de fichas en Mapa3.js.
+    const resultadosBatalla = {
+        fichasPerdidasAtaque: victoriasDefensa, // Fichas que pierde el atacante (igual a duelos ganados por la defensa)
+        fichasPerdidasDefensa: victoriasAtaque // Fichas que pierde el defensor (igual a duelos ganados por el ataque)
+    };
+    localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
+    localStorage.setItem('ganadorBatalla', ganador);
+    
     document.getElementById('nombre-ganador').textContent = ganador;
 });

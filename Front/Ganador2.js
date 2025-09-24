@@ -10,23 +10,24 @@ window.onload = function() {
     const dadosAtaque = JSON.parse(ataqueResultadosJSON);
     const dadosDefensa = JSON.parse(defensaResultadosJSON);
 
-    // Se ha eliminado la línea de ordenamiento de dados para cumplir con la regla de comparación de orden.
-    // dadosAtaque.sort((a, b) => b - a);
-    // dadosDefensa.sort((a, b) => b - a);
+    // CRÍTICO: Ordenar los dados de mayor a menor para la comparación (Regla de ORDEN)
+    dadosAtaque.sort((a, b) => b - a);
+    dadosDefensa.sort((a, b) => b - a);
 
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;
     let duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
 
-    // Lógica: Si el dado de ataque es mayor, gana ataque. Si no, gana defensa (incluyendo empates).
+    // Lógica: La defensa gana si dadoAtaque <= dadoDefensa
     for (let i = 0; i < duelos; i++) {
         if (dadosAtaque[i] > dadosDefensa[i]) {
-            victoriasAtaque++;
+            victoriasAtaque++; // Defensa pierde 1 ficha
         } else {
-            victoriasDefensa++;
+            victoriasDefensa++; // Ataque pierde 1 ficha
         }
     }
 
+    // El ganador de la batalla es el que obtiene al menos 2 victorias.
     let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
@@ -36,8 +37,8 @@ window.onload = function() {
 
     // Guardar los resultados en localStorage para que Mapa5.js pueda leerlos
     const resultadosBatalla = {
-        fichasPerdidasAtaque: victoriasDefensa,
-        fichasPerdidasDefensa: victoriasAtaque
+        fichasPerdidasAtaque: victoriasDefensa, // Fichas que pierde el J2 (atacante)
+        fichasPerdidasDefensa: victoriasAtaque // Fichas que pierde el J1 (defensor)
     };
     localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
     localStorage.setItem('ganadorBatalla', ganador);
