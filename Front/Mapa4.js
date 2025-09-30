@@ -1,62 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Jugador 1 (Defensa)
-    const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-    // Jugador 2 (Ataque)
+    const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Gran Bretaña", "Canadá"];
     const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    const todosLosPaises = [...paisesJugador1, ...paisesJugador2];
 
-    // En Mapa4, siempre se empieza sin atacante seleccionado (a menos que se vuelva a cargar con uno)
     let paisAtacante = localStorage.getItem('paisAtacante');
 
+    // Inicializa las fichas si no existen
+    function inicializarFichas() {
+        let fichas = JSON.parse(localStorage.getItem('fichas'));
+        if (!fichas) {
+            fichas = {};
+            todosLosPaises.forEach(pais => {
+                fichas[pais] = 3;
+            });
+            localStorage.setItem('fichas', JSON.stringify(fichas));
+        }
+    }
+
+    // Actualiza los botones con la cantidad de fichas y habilita según el turno
     function actualizarBotones() {
-        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
+        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
         const botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
-            // **CORRECCIÓN:** Calcula las fichas, usando 1 como valor por defecto.
-            const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
-                               ? fichasGuardadas[boton.id] 
-                               : 1;
+            const cantidadFichas = fichasGuardadas.hasOwnProperty(boton.id)
+                ? fichasGuardadas[boton.id]
+                : 1;
 
             boton.textContent = `${boton.id} (${cantidadFichas})`;
 
             if (!paisAtacante) {
-                // Seleccionar Atacante: Desbloquear todos los países del JUGADOR 2
+                // Selección de atacante: habilita países del Jugador 2
                 boton.disabled = !paisesJugador2.includes(boton.id);
             } else {
-                // Seleccionar Defensor: Habilita JUGADOR 1
+                // Selección de defensor: habilita países del Jugador 1
                 boton.disabled = !paisesJugador1.includes(boton.id);
             }
         });
     }
 
-    // Manejador de clics
+    // Manejador de clics para seleccionar atacante y defensor
     const botones = document.querySelectorAll(".rectangulo-gris button");
     botones.forEach(boton => {
         boton.addEventListener("click", () => {
-            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
+            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
 
             if (!paisAtacante) {
-                // Paso 1: Selecciona País ATACANTE (Jugador 2)
                 if (paisesJugador2.includes(boton.id)) {
-                    // Verificar que el país seleccionado tenga más de 1 ficha
-                    if (fichasGuardadas[boton.id] > 1) {
-                        paisAtacante = boton.id;
-                        localStorage.setItem('paisAtacante', paisAtacante);
-                        actualizarBotones();
-                    } else {
-                        alert('Debes seleccionar un país con al menos 2 fichas para atacar.');
-                    }
+                    paisAtacante = boton.id;
+                    localStorage.setItem('paisAtacante', paisAtacante);
+                    actualizarBotones();
                 }
             } else {
-                // Paso 2: Selecciona País DEFENSOR (Jugador 1)
                 if (paisesJugador1.includes(boton.id)) {
                     localStorage.setItem('paisDefensor', boton.id);
-                    // Navegar al lanzador de dados del Jugador 2
-                    window.location.href = "Dado2.html"; 
+                    window.location.href = "Dado2.html";
                 }
             }
         });
     });
 
+    inicializarFichas();
     actualizarBotones();
 });
