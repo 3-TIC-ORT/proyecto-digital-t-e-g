@@ -21,7 +21,7 @@ function lanzarDados() {
       defensaResultados.push(resultado);
   });
   
-  // Guardar los resultados en localStorage para que Ganador.js pueda leerlos
+ 
   localStorage.setItem('ataqueDados', JSON.stringify(ataqueResultados));
   localStorage.setItem('defensaDados', JSON.stringify(defensaResultados));
 }

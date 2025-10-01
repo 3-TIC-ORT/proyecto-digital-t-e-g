@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // ¡CRÍTICO!: Ordenar los dados de mayor a menor para la comparación por duelos.
+
     ataqueDados.sort((a, b) => b - a);
     defensaDados.sort((a, b) => b - a);
 
@@ -16,27 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const duelos = Math.min(ataqueDados.length, defensaDados.length);
 
-    // Lógica de duelos: Ataque pierde la ficha si el dado es menor o igual (Defensa gana el empate)
     for (let i = 0; i < duelos; i++) {
         if (ataqueDados[i] > defensaDados[i]) {
-            victoriasAtaque++; // Defensa pierde 1 ficha
+            victoriasAtaque++; 
         } else {
-            victoriasDefensa++; // Ataque pierde 1 ficha (por empate o ser menor)
+            victoriasDefensa++; 
         }
     }
 
-    // Determinar el ganador final de la Batalla: Mínimo 2 duelos ganados.
+
     let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
     } else {
-        ganador = 'Defensa'; // Si el ataque no gana 2, gana la defensa.
+        ganador = 'Defensa'; 
     }
 
-    // Guardar los resultados para la resta de fichas en Mapa3.js.
     const resultadosBatalla = {
-        fichasPerdidasAtaque: victoriasDefensa, // Fichas que pierde el atacante (igual a duelos ganados por la defensa)
-        fichasPerdidasDefensa: victoriasAtaque // Fichas que pierde el defensor (igual a duelos ganados por el ataque)
+        fichasPerdidasAtaque: victoriasDefensa, 
+        fichasPerdidasDefensa: victoriasAtaque 
     };
     localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
     localStorage.setItem('ganadorBatalla', ganador);
