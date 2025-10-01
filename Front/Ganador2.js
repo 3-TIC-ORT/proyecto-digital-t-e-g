@@ -1,14 +1,14 @@
 window.onload = function() {
-    const ataqueResultadosJSON = localStorage.getItem('ataqueDados');
-    const defensaResultadosJSON = localStorage.getItem('defensaDados');
+    let ataqueResultadosJSON = localStorage.getItem('ataqueDados');
+    let defensaResultadosJSON = localStorage.getItem('defensaDados');
 
     if (!ataqueResultadosJSON || !defensaResultadosJSON) {
         document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
         return;
     }
 
-    const dadosAtaque = JSON.parse(ataqueResultadosJSON);
-    const dadosDefensa = JSON.parse(defensaResultadosJSON);
+    let dadosAtaque = JSON.parse(ataqueResultadosJSON);
+    let dadosDefensa = JSON.parse(defensaResultadosJSON);
 
 
     dadosAtaque.sort((a, b) => b - a);
@@ -35,7 +35,7 @@ window.onload = function() {
         ganador = 'Defensa';
     }
 
-    const resultadosBatalla = {
+    let resultadosBatalla = {
         fichasPerdidasAtaque: victoriasDefensa, 
         fichasPerdidasDefensa: victoriasAtaque 
     };

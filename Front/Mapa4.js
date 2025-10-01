@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Gran Bretaña", "Canadá"];
-    const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
-    const todosLosPaises = [...paisesJugador1, ...paisesJugador2];
+    let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Gran Bretaña", "Canadá"];
+    let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    let todosLosPaises = [...paisesJugador1, ...paisesJugador2];
 
     let paisAtacante = localStorage.getItem('paisAtacante');
 
@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function actualizarBotones() {
-        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
-        const botones = document.querySelectorAll(".rectangulo-gris button");
+        let fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
+        let botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
-            const cantidadFichas = fichasGuardadas.hasOwnProperty(boton.id)
+            let cantidadFichas = fichasGuardadas.hasOwnProperty(boton.id)
                 ? fichasGuardadas[boton.id]
                 : 1;
 
@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const botones = document.querySelectorAll(".rectangulo-gris button");
+    let botones = document.querySelectorAll(".rectangulo-gris button");
     botones.forEach(boton => {
         boton.addEventListener("click", () => {
-            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
+            let fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
 
             if (!paisAtacante) {
                 if (paisesJugador2.includes(boton.id)) {

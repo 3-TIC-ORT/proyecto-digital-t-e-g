@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
-    const defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
+    let ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
+    let defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
     
     if (ataqueDados.length === 0 || defensaDados.length === 0) {
         document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;
     
-    const duelos = Math.min(ataqueDados.length, defensaDados.length);
+    let duelos = Math.min(ataqueDados.length, defensaDados.length);
 
     for (let i = 0; i < duelos; i++) {
         if (ataqueDados[i] > defensaDados[i]) {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ganador = 'Defensa'; 
     }
 
-    const resultadosBatalla = {
+    let resultadosBatalla = {
         fichasPerdidasAtaque: victoriasDefensa, 
         fichasPerdidasDefensa: victoriasAtaque 
     };

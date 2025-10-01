@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+    let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
 
-    const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
     let paisAtacante = localStorage.getItem('paisAtacante'); 
 
     function calcularResultadosBatalla() {
-        const paisDefensor = localStorage.getItem('paisDefensor');
-        const resultadosBatalla = JSON.parse(localStorage.getItem('resultadosBatalla'));
+        let paisDefensor = localStorage.getItem('paisDefensor');
+        let resultadosBatalla = JSON.parse(localStorage.getItem('resultadosBatalla'));
         let fichas = JSON.parse(localStorage.getItem('fichas'));
-        const localPaisAtacante = localStorage.getItem('paisAtacante'); 
+        let localPaisAtacante = localStorage.getItem('paisAtacante'); 
     
         if (localPaisAtacante && paisDefensor && resultadosBatalla && fichas) {
             
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function actualizarBotones() {
-        const fichasGuardadas = JSON.parse(localStorage.getItem('fichas')); 
-        const botones = document.querySelectorAll(".rectangulo-gris button");
+        let fichasGuardadas = JSON.parse(localStorage.getItem('fichas')); 
+        let botones = document.querySelectorAll(".rectangulo-gris button");
 
         botones.forEach(boton => {
        
-            const cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
+            let cantidadFichas = (fichasGuardadas && fichasGuardadas[boton.id] !== undefined) 
                                    ? fichasGuardadas[boton.id] 
                                    : 1;
 
@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const botones = document.querySelectorAll(".rectangulo-gris button");
+    let botones = document.querySelectorAll(".rectangulo-gris button");
     botones.forEach(boton => {
         boton.addEventListener("click", () => {
-            const fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
+            let fichasGuardadas = JSON.parse(localStorage.getItem('fichas'));
 
             if (!paisAtacante) {
              

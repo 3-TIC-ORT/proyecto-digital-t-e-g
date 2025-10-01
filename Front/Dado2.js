@@ -3,22 +3,22 @@ function generarNumeroAleatorio() {
 }
 
 function lanzarDados() {
-  const dadosAtaque = document.querySelectorAll('.dadoataque');
-  const dadosDefensa = document.querySelectorAll('.dadodefensa');
+  let dadosAtaque = document.querySelectorAll('.dadoataque');
+  let dadosDefensa = document.querySelectorAll('.dadodefensa');
   
   let ataqueResultados = [];
   let defensaResultados = [];
 
 
   dadosAtaque.forEach(dado => {
-      const resultado = generarNumeroAleatorio();
+      let resultado = generarNumeroAleatorio();
       dado.textContent = resultado;
       ataqueResultados.push(resultado);
   });
 
 
   dadosDefensa.forEach(dado => {
-      const resultado = generarNumeroAleatorio();
+      let resultado = generarNumeroAleatorio();
       dado.textContent = resultado;
       defensaResultados.push(resultado);
   });

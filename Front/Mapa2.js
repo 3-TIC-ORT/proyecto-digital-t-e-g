@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-    const paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+   let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+   let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
  
     let fichas = JSON.parse(localStorage.getItem('fichas')) || {};
@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
      
         document.querySelector('.encabezado h1').textContent = `JUGADOR 2, TENES ${fichasDisponibles} FICHAS PARA DISTRIBUIR ENTRE TODOS TUS PAISES`;
 
-        const botones = document.querySelectorAll(".rectangulo-gris button");
+       let botones = document.querySelectorAll(".rectangulo-gris button");
         
         botones.forEach(boton => {
-            const pais = boton.id;
+           let pais = boton.id;
             
   
-            const cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
+           let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
             boton.textContent = `${pais} (${cantidadFichas})`;
 
          
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const botones = document.querySelectorAll(".rectangulo-gris button");
+   let botones = document.querySelectorAll(".rectangulo-gris button");
     botones.forEach(boton => {
         boton.addEventListener('click', manejarClickPais);
     });
