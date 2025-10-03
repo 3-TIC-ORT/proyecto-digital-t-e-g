@@ -28,9 +28,9 @@ window.onload = function() {
     let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
-    } else {
-        ganador = 'Defensa';
-    }
+    } 
+    else if (victoriasAtaque = victoriasDefensa){ganador = "Defensa";}
+    else {ganador = "Defensa"}
 
     let resultadosBatalla = {
         fichasPerdidasAtaque: victoriasDefensa, 
