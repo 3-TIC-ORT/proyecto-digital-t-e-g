@@ -5,24 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
    
 
 
-    ataqueDados.sort((a, b) => b - a);
+    ataqueDados.sort((a, b,) => b - a);
     defensaDados.sort((a, b) => b - a);
 
-    let victoriasAtaque = 0;
-    let victoriasDefensa = 0;
+    let victoriasAtaque
+    let victoriasDefensa
     
     let duelos = Math.min(ataqueDados.length, defensaDados.length);
 
-    for (let i = 0; i < duelos; i++) {
-        if (ataqueDados[i] > defensaDados[i]) {
-            victoriasAtaque++; 
-        } else {
-            victoriasDefensa++; 
-        }
-    }
-
-
-    let ganador;
+      let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';} 
     else if (victoriasAtaque = victoriasDefensa){ganador = "Defensa";}
