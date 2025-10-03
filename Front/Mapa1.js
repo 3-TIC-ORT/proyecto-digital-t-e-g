@@ -62,9 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
        
             actualizarDisplay();
-        } else if (paisesJugador1.includes(pais) && fichasDisponibles === 0) {
-            alert('Ya no te quedan fichas de refuerzo disponibles. Presiona Siguiente.');
-        }
+        } 
     }
 
     let botones = document.querySelectorAll(".rectangulo-gris button");
