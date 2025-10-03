@@ -2,10 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
     let defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
     
-    if (ataqueDados.length === 0 || defensaDados.length === 0) {
-        document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
-        return;
-    }
+   
 
 
     ataqueDados.sort((a, b) => b - a);

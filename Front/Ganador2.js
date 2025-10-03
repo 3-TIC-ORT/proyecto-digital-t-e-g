@@ -2,10 +2,7 @@ window.onload = function() {
     let ataqueResultadosJSON = localStorage.getItem('ataqueDados');
     let defensaResultadosJSON = localStorage.getItem('defensaDados');
 
-    if (!ataqueResultadosJSON || !defensaResultadosJSON) {
-        document.getElementById('nombre-ganador').textContent = 'Error: Faltan datos de los dados.';
-        return;
-    }
+  
 
     let dadosAtaque = JSON.parse(ataqueResultadosJSON);
     let dadosDefensa = JSON.parse(defensaResultadosJSON);
