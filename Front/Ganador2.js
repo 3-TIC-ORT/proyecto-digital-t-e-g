@@ -1,26 +1,24 @@
-window.onload = function() {
-    let ataqueResultadosJSON = localStorage.getItem('ataqueDados');
-    let defensaResultadosJSON = localStorage.getItem('defensaDados');
+document.addEventListener('DOMContentLoaded', () => {
+    let ataqueDados = JSON.parse(localStorage.getItem('ataqueDados')) || [];
+    let defensaDados = JSON.parse(localStorage.getItem('defensaDados')) || [];
 
-  
-
-    let dadosAtaque = JSON.parse(ataqueResultadosJSON);
-    let dadosDefensa = JSON.parse(defensaResultadosJSON);
-
-
-    dadosAtaque.sort((a, b) => b - a);
-    dadosDefensa.sort((a, b) => b - a);
 
     let victoriasAtaque = 0;
     let victoriasDefensa = 0;
-    let duelos = Math.min(dadosAtaque.length, dadosDefensa.length);
+
+
+    let duelos = Math.min(ataqueDados.length, defensaDados.length);
 
 
     for (let i = 0; i < duelos; i++) {
-        if (dadosAtaque[i] > dadosDefensa[i]) {
-            victoriasAtaque++; 
+        const a = ataqueDados[i];
+        const d = defensaDados[i];
+
+        if (a > d) {
+            victoriasAtaque++;
         } else {
-            victoriasDefensa++; 
+
+            victoriasDefensa++;
         }
     }
 
@@ -28,16 +26,20 @@ window.onload = function() {
     let ganador;
     if (victoriasAtaque >= 2) {
         ganador = 'Ataque';
-    } 
-    else if (victoriasAtaque = victoriasDefensa){ganador = "Defensa";}
-    else {ganador = "Defensa"}
+    } else {
+        ganador = 'Defensa';
+    }
+
 
     let resultadosBatalla = {
-        fichasPerdidasAtaque: victoriasDefensa, 
-        fichasPerdidasDefensa: victoriasAtaque 
+        fichasPerdidasAtaque: victoriasDefensa,
+        fichasPerdidasDefensa: victoriasAtaque
     };
-    localStorage.setItem('resultadosBatalla', JSON.stringify(resultadosBatalla));
-    localStorage.setItem('ganadorBatalla', ganador);
-    
-    document.getElementById('nombre-ganador').textContent = ganador;
-};
+
+    localStorage.setItem('resultadosBatalla2', JSON.stringify(resultadosBatalla));
+    localStorage.setItem('ganadorBatalla2', ganador);
+
+
+    const span = document.getElementById('nombre-ganador');
+    if (span) span.textContent = ganador;
+});
