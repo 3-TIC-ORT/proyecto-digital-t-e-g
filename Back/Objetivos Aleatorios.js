@@ -1,0 +1,2 @@
+function generarObjetivosAleatorios() {}
+    let Objetivos = document.querySelectorAll('.Conquistar America del Sur y Europa') ('.Conquistar Asia y America del Norte') ('.Conquistar Europa y Oseanía') ('.Conquistar America del Sur y Oceanía') ('.Conquistar America del norte y America del Sur') 
