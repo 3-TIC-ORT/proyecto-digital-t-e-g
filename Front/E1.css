@@ -19,7 +19,6 @@ h1 {
     color: black;
     margin: 0;
 }
-
 .b {
     padding: 15px 30px;
     background-color: white;
@@ -32,4 +31,11 @@ h1 {
     display: block;         /* Ocupa línea completa */
     margin: 20px auto;      /* Centrado horizontal */
     transition: background-color 0.3s ease;
+}
+.logo {
+	max-width: 40px;
+	width: 40%;
+	height: auto;
+    margin-top: 350px;
+    margin-left: 15px;
 }
