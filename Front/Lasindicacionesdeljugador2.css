@@ -1,0 +1,35 @@
+body {
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background-color: red;
+}
+
+.transparente {
+    background-color: #EDE8D0A8;
+    max-width: 800px;      /* Más ancho que antes */
+    margin: 40px auto;
+    padding: 30px 40px;    /* Más espacio interno */
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 18px;       /* Corrección de 'front-size' y ajuste del tamaño */
+    text-align: center;
+    color: black;
+    margin: 0;
+}
+
+.b {
+    padding: 15px 30px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    display: block;         /* Ocupa línea completa */
+    margin: 20px auto;      /* Centrado horizontal */
+    transition: background-color 0.3s ease;
+}
