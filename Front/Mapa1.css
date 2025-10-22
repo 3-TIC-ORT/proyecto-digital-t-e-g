@@ -10,4 +10,5 @@ h1{color: red;}
     width: 1350px;
     height: 620px;
   }
-  header{margin-top: -600px;}
+  header{margin-top: -600px;
+    margin-left: 50px; }
