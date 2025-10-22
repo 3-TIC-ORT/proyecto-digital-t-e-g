@@ -6,26 +6,12 @@ body {
     font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
+     background-color: green;
 }
 
-.encabezado {
-    background-color: white;
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-    padding: 15px;
-}
 
-.rectangulo-gris {
-    flex-grow: 1;
-    background-color: #a9a9a9;
-    width: 1345px;
-    height: 400px;
-}
 
-.pie-de-pagina {
-    background-color: white;
-    text-align: center;
-    border-top: 2px solid #ccc;
-    padding: 10px;
-}
+
+
+
 h1{color: red;}
