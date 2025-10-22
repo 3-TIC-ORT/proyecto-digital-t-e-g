@@ -1,17 +1,13 @@
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    justify-content: center;
-    align-items: center;
+   
+   
      background-color: green;
 }
 
 
-
-
-
-
 h1{color: red;}
+.Farme{
+    width: 1350px;
+    height: 620px;
+  }
+  header{margin-top: -600px;}
