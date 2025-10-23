@@ -12,3 +12,45 @@ h1{color: red;}
   }
   header{margin-top: -600px;
     margin-left: 50px; }
+.Canadá {
+  position: absolute;
+  top: 230px;     
+  left: 260px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+.USA {
+  position: absolute;
+  top: 330px;     
+  left: 269px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  width: 20px;      
+  height: 25px;       
+}
+
+
+.México {
+  position: absolute;
+  top: 260px;     
+  left: 500px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
