@@ -44,13 +44,115 @@ h1{color: red;}
 
 .México {
   position: absolute;
-  top: 260px;     
-  left: 500px;
+  top: 360px;     
+  left: 360px;
   background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 800px;
+  padding: 5px 10px;
+  cursor: pointer;
+   font-size: 10px; 
+   transform: rotate(20deg);
+}
+.Argentina{
+    position: absolute;
+  top: 460px;     
+  left: 520px;
+  background-color: #6BB682;
   color: black;
   font-weight: bold;
   border: none;
   border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+    transform: rotate(90deg);
 }
+.Brasil{   position: absolute;
+  top: 420px;     
+  left: 600px;
+  background-color: #6BB682;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+ transform: rotate(90deg);}
+ .Uruguay{    position: absolute;
+  top: 455px;     
+  left: 550px;
+  background-color: #6BB682;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Egipto{position: absolute;
+  top: 430px;     
+  left: 930px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Etiopía{position: absolute;
+  top: 450px;     
+  left: 900px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Sudáfrica{position: absolute;
+  top: 500px;     
+  left: 910px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+.Australia{position: absolute;
+  top: 470px;     
+  left: 1150px;
+  background-color: F3B0E0;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
