@@ -1,31 +1,303 @@
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    justify-content: center;
-    align-items: center;
+   
+   
+     background-color: green;
 }
 
-.encabezado {
-    background-color: white;
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-    padding: 15px;
+
+h1{color: red;}
+.Farme{
+    width: 1350px;
+    height: 620px;
+  }
+  header{margin-top: -600px;
+    margin-left: 50px; }
+.Canadá {
+  position: absolute;
+  top: 230px;     
+  left: 260px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.rectangulo-gris {
-    flex-grow: 1;
-    background-color: #a9a9a9;
-    width: 1365px;
-    height: 400px;
+
+.USA {
+  position: absolute;
+  top: 330px;     
+  left: 269px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  width: 20px;      
+  height: 25px;       
 }
 
-.pie-de-pagina {
-    background-color: white;
-    text-align: center;
-    border-top: 2px solid #ccc;
-    padding: 10px;
+
+.México {
+  position: absolute;
+  top: 360px;     
+  left: 360px;
+  background-color: #D89A61;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 800px;
+  padding: 5px 10px;
+  cursor: pointer;
+   font-size: 10px; 
+   transform: rotate(20deg);
 }
+.Argentina{
+    position: absolute;
+  top: 460px;     
+  left: 520px;
+  background-color: #6BB682;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+    transform: rotate(90deg);
+}
+.Brasil{   position: absolute;
+  top: 420px;     
+  left: 600px;
+  background-color: #6BB682;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+ transform: rotate(90deg);}
+ .Uruguay{    position: absolute;
+  top: 455px;     
+  left: 550px;
+  background-color: #6BB682;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Egipto{position: absolute;
+  top: 430px;     
+  left: 930px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Etiopía{position: absolute;
+  top: 450px;     
+  left: 900px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Sudáfrica{position: absolute;
+  top: 500px;     
+  left: 910px;
+  background-color: #FDB456;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+.Australia{position: absolute;
+  top: 470px;     
+  left: 1150px;
+  background-color: F3B0E0;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Granbretaña{position: absolute;
+  top: 320px;     
+  left: 720px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  transform: rotate(340deg);
+  position: absolute;}
+  .España{position: absolute;
+  top: 380px;     
+  left: 700px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  transform: rotate(340deg);
+  position: absolute;}
+  .Francia{position: absolute;
+  top: 350px;     
+  left: 780px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  transform: rotate(340deg);
+  position: absolute;}
+  .Alemania{position: absolute;
+  top: 350px;     
+  left: 850px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  position: absolute;}
+  .Italia{position: absolute;
+  top: 400px;     
+  left: 850px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  position: absolute;}
+  .Rusia{position: absolute;
+  top: 300px;     
+  left: 930px;
+  background-color: #EECA93;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 7px; 
+    width: 7px;       
+  height: 7px; 
+  position: absolute;}
+  .Japón{position: absolute;
+  top: 250px;     
+  left: 1170px;
+  background-color: #CAA265;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 6px; 
+    width: 6px;       
+  height: 6px; 
+    transform: rotate(46deg);
+  position: absolute;}
+  .China{position: absolute;
+  top: 300px;     
+  left: 1100px;
+  background-color: #CAA265;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 20px; 
+    width: 20px;       
+  height: 20px; 
+  position: absolute;}
+  .India{position: absolute;
+  top: 370px;     
+  left: 1090px;
+  background-color: #CAA265;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
+  .Armenia{position: absolute;
+  top: 390px;     
+  left: 1000px;
+  background-color: #CAA265;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+    width: 10px;       
+  height: 10px; 
+  position: absolute;}
 h1{color: blue;}
