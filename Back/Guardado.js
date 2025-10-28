@@ -1,20 +1,26 @@
-import json
-fichas = {
-    "Argentina": 5,
-    "Brasil": 3,
-    "Chile": 2
+import fs from "fs";
+
+let fichas = {
+  "Argentina": 5,
+  "Brasil": 3,
+  "Chile": 2
+};
+
+function guardarFichas(fichas, archivo = "fichas.json") {
+  fs.writeFileSync(archivo, JSON.stringify(fichas, null, 4));
+  console.log("Fichas guardadas en", archivo);
 }
-def guardar_fichas(fichas, archivo="fichas.json"):
-    with open(archivo, "w") as f:
-        json.dump(fichas, f, indent=4)
-    print("Fichas guardadas en", archivo)
-def cargar_fichas(archivo="fichas.json"):
-    try:
-        with open(archivo, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("No hay archivo guardado todavía.")
-        return {}
-guardar_fichas(fichas)
-fichas_cargadas = cargar_fichas()
-print("Fichas cargadas:", fichas_cargadas)
+
+function cargarFichas(archivo = "fichas.json") {
+  try {
+    const data = fs.readFileSync(archivo, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.log("No hay archivo guardado todavía.");
+    return {};
+  }
+}
+
+guardarFichas(fichas);
+let fichasCargadas = cargarFichas();
+console.log("Fichas cargadas:", fichasCargadas);
