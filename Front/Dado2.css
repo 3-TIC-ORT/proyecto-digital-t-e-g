@@ -8,71 +8,13 @@ body {
     align-items: center;
 }
 
-.background-content {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-}
 
-.encabezado {
-    background-color: white;
-    text-align: center;
-    border-bottom: 2px solid #ccc;
-    padding: 15px;
-}
 
-.rectangulo-gris {
-    flex-grow: 1;
-    background-color: #a9a9a9;
-    width: 1345px;
-    height: 400px;
-    margin: auto;
-}
 
-.pie-de-pagina {
-    background-color: white;
-    text-align: center;
-    border-top: 2px solid #ccc;
-    padding: 10px;
-}
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
 
-.rectangulo-azul {
-    width: 300px;
-    height: 150px;
-    background-color: blue;
-    border: 2px solid blue;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-}
 
-.fila {
-    font-weight: bold;
-    margin: 5px 0;
-}
 
-.fila span {
-    display: block;
-}
+
+
+
