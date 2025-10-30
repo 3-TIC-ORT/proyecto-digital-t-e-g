@@ -1,26 +1,17 @@
 import fs from "fs";
+import { subscribeGETEvent, subscribePOSTEvent, startServer } from "soquetic";
 
-let fichas = {
-  "Argentina": 5,
-  "Brasil": 3,
-  "Chile": 2
-};
-
-function guardarFichas(fichas, archivo = "fichas.json") {
-  fs.writeFileSync(archivo, JSON.stringify(fichas, null, 4));
-  console.log("Fichas guardadas en", archivo);
+function guardarFichas() {
+  JSON.stringify(fs.writeFileSync("datos.json", ));
 }
+
+subscribePOSTEvent("guardar", () => guardarFichas());
 
 function cargarFichas(archivo = "fichas.json") {
-  try {
-    const data = fs.readFileSync(archivo, "utf8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.log("No hay archivo guardado todavía.");
-    return {};
-  }
+    let data = JSON.parse(fs.readFileSync("datos.json", "utf8"));
+    return (data);
 }
 
-guardarFichas(fichas);
-let fichasCargadas = cargarFichas();
-console.log("Fichas cargadas:", fichasCargadas);
+subscribeGETEvent("cargar", () => cargarFichas());
+
+startServer();
