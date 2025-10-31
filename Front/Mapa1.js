@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // ✅ Guardar datos en el backend
+
     function guardarDatos() {
         fetch("http://localhost:3000/guardar", {
             method: "POST",
