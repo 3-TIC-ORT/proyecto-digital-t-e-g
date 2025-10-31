@@ -3,66 +3,74 @@ document.addEventListener('DOMContentLoaded', () => {
     let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
     let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
+    // ✅ Un solo objeto que contiene todo
+    let datos = {
+        fichas: {},
+        fichasDisponibles: 8
+    };
 
-    let fichas = JSON.parse(localStorage.getItem('fichas')) || {};
-
-
-    let fichasDisponibles = parseInt(localStorage.getItem('fichasDisponiblesJugador1'));
-
-
-    if (isNaN(fichasDisponibles) || fichasDisponibles <= 0) {
-        fichasDisponibles = 8;
-        localStorage.setItem('fichasDisponiblesJugador1', fichasDisponibles);
+    // ✅ Cargar datos desde el backend
+    function cargarDatos() {
+        fetch("http://localhost:3000/cargar")
+            .then(res => res.json())
+            .then(data => {
+                // Si el archivo tiene datos, se actualiza el objeto
+                datos = data || { fichas: {}, fichasDisponibles: 8 };
+                actualizarDisplay();
+            })
+            .catch(() => {
+                console.log("No se pudieron cargar los datos del servidor");
+            });
     }
-    
+
+    // ✅ Guardar datos en el backend
+    function guardarDatos() {
+        fetch("http://localhost:3000/guardar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datos)
+        })
+        .catch(() => {
+            console.log("Error al guardar los datos");
+        });
+    }
 
     function actualizarDisplay() {
-     
         let encabezado = document.querySelector('.encabezado h1');
         if (encabezado) {
-            encabezado.textContent = `JUGADOR 1, TENES ${fichasDisponibles} FICHAS PARA DISTRIBUIR ENTRE TUS PAISES`;
+            encabezado.textContent = `JUGADOR 1, TENÉS ${datos.fichasDisponibles} FICHAS PARA DISTRIBUIR ENTRE TUS PAISES`;
         }
-        
+
         let botones = document.querySelectorAll(".rectangulo-gris button");
-        
         botones.forEach(boton => {
             let pais = boton.id;
-            
-          
-            let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
-            boton.textContent = `${pais} (${cantidadFichas})`; 
+            let cantidadFichas = datos.fichas[pais] !== undefined ? datos.fichas[pais] : 1;
+            boton.textContent = `${pais} (${cantidadFichas})`;
 
             if (paisesJugador2.includes(pais)) {
                 boton.disabled = true;
-            } 
-      
-            else if (paisesJugador1.includes(pais)) {
-
-                boton.disabled = (fichasDisponibles === 0);
+            } else if (paisesJugador1.includes(pais)) {
+                boton.disabled = (datos.fichasDisponibles === 0);
             }
         });
     }
 
-
     function manejarClickPais(event) {
         let pais = event.target.id;
-        
-        if (paisesJugador1.includes(pais) && fichasDisponibles > 0) {
-            
 
-            if (fichas[pais] === undefined) {
-                fichas[pais] = 1; 
+        if (paisesJugador1.includes(pais) && datos.fichasDisponibles > 0) {
+            if (datos.fichas[pais] === undefined) {
+                datos.fichas[pais] = 1;
             }
-            
-            fichas[pais]++;
-            fichasDisponibles--;
-        
-            localStorage.setItem('fichas', JSON.stringify(fichas));
-            localStorage.setItem('fichasDisponiblesJugador1', fichasDisponibles);
-            
-       
+
+            datos.fichas[pais]++;
+            datos.fichasDisponibles--;
+
             actualizarDisplay();
-        } 
+
+            // ✅ Guardar los cambios en el backend
+            guardarDatos();
+        }
     }
 
     let botones = document.querySelectorAll(".rectangulo-gris button");
@@ -70,6 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         boton.addEventListener("click", manejarClickPais);
     });
 
- 
-    actualizarDisplay();
+    // ✅ Cargar datos al iniciar
+    cargarDatos();
 });
