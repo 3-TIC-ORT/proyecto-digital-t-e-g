@@ -81,3 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ✅ Cargar datos al iniciar
     cargarDatos();
 });
+
+window.onload = function(cargarDatos) {
+    cargarDatos();
+}
