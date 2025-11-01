@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let todosLosPaises = [...paisesJugador1, ...paisesJugador2];
   
     let paisAtacante = localStorage.getItem('paisAtacante');
+
+    // Si hay un paisAtacante guardado pero ya no pertenece a ninguna lista, limpiarlo (estado inconsistente)
+    if (paisAtacante && !(paisesJugador1.includes(paisAtacante) || paisesJugador2.includes(paisAtacante))) {
+      localStorage.removeItem('paisAtacante');
+      paisAtacante = null;
+    }
   
     function inicializarFichas() {
       let fichas = JSON.parse(localStorage.getItem('fichas'));
@@ -69,6 +75,51 @@ document.addEventListener('DOMContentLoaded', () => {
   
       localStorage.removeItem('paisAtacante');
       paisAtacante = null;
+      // Verificar objetivos después de la conquista
+      checkObjectives();
+    }
+
+    function checkObjectives() {
+      const continentMap = {
+        'USA': 'America', 'Uruguay': 'America', 'Argentina': 'America', 'Canadá': 'America', 'México': 'America', 'Brasil': 'America',
+        'España': 'Europa', 'Francia': 'Europa', 'Granbretaña': 'Europa', 'Italia': 'Europa', 'Alemania': 'Europa', 'Rusia': 'Europa',
+        'China': 'Asia', 'Japón': 'Asia', 'India': 'Asia', 'Armenia': 'Asia',
+        'Egipto': 'Africa', 'Etiopía': 'Africa', 'Sudáfrica': 'Africa',
+        'Australia': 'Oceania'
+      };
+
+      const p1 = JSON.parse(localStorage.getItem('paisesJugador1')) || paisesJugador1;
+      const p2 = JSON.parse(localStorage.getItem('paisesJugador2')) || paisesJugador2;
+
+      function contarPorContinente(lista, continente) {
+        return lista.filter(p => continentMap[p] === continente).length;
+      }
+
+      function poseeContinenteCompleto(lista, continente) {
+        const todos = Object.keys(continentMap).filter(p => continentMap[p] === continente);
+        return todos.every(p => lista.includes(p));
+      }
+
+      const p1TieneAustralia = p1.includes('Australia');
+      const p1AsiaCount = contarPorContinente(p1, 'Asia');
+      const p1TieneAmerica = poseeContinenteCompleto(p1, 'America');
+      const p1TieneEuropa = poseeContinenteCompleto(p1, 'Europa');
+      const jugador1Cumple = p1TieneAustralia && p1AsiaCount >= 3 && p1TieneAmerica && p1TieneEuropa;
+
+      const p2TieneAfrica = poseeContinenteCompleto(p2, 'Africa');
+      const p2TieneAsia = poseeContinenteCompleto(p2, 'Asia');
+      const p2TieneAustralia = p2.includes('Australia');
+      const p2EuropaCount = contarPorContinente(p2, 'Europa');
+      const p2AmericaCount = contarPorContinente(p2, 'America');
+      const jugador2Cumple = p2TieneAfrica && p2TieneAsia && p2TieneAustralia && p2EuropaCount >= 4 && p2AmericaCount >= 4;
+
+      if (jugador1Cumple) {
+        localStorage.setItem('ganadorJuego', '1');
+        window.location.href = 'ganadordeljuego1.html';
+      } else if (jugador2Cumple) {
+        localStorage.setItem('ganadorJuego', '2');
+        window.location.href = 'ganadordeljuago2.html';
+      }
     }
   
     function actualizarBotones() {
@@ -85,14 +136,38 @@ document.addEventListener('DOMContentLoaded', () => {
   
         boton.textContent = `${boton.id} (${cantidadFichas})`;
   
+        // Si no hay pais atacante seleccionado, permitir seleccionar países propios con >1 ficha
         if (!paisAtacante) {
           boton.disabled = !(paisesJugador1.includes(boton.id) && cantidadFichas > 1);
         } else {
-          boton.disabled = !paisesJugador2.includes(boton.id);
+          // Si hay un país atacante, habilitar solamente los países del oponente.
+          // Determinar dueño del país atacante en tiempo real (puede variar tras conquistas)
+          const atacanteEsP1 = paisesJugador1.includes(paisAtacante);
+          const atacanteEsP2 = paisesJugador2.includes(paisAtacante);
+
+          if (atacanteEsP1) {
+            boton.disabled = !paisesJugador2.includes(boton.id);
+          } else if (atacanteEsP2) {
+            boton.disabled = !paisesJugador1.includes(boton.id);
+          } else {
+            // Si no se encuentra el atacante en ninguna lista, deshabilitar por seguridad
+            boton.disabled = true;
+          }
         }
       });
   
       localStorage.setItem('fichas', JSON.stringify(fichasGuardadas));
+
+      // Si después de calcular los estados TODOS los botones quedaron deshabilitados,
+      // puede deberse a un estado inconsistente (paisAtacante obsoleto). En ese caso
+      // limpiamos la selección y volvemos a recalcular para que el usuario pueda seleccionar.
+      const anyEnabled = Array.from(botones).some(b => !b.disabled);
+      if (!anyEnabled && paisAtacante) {
+        localStorage.removeItem('paisAtacante');
+        paisAtacante = null;
+        // Recalcular una sola vez más con estado limpio
+        actualizarBotones();
+      }
     }
   
     let botones = document.querySelectorAll(".rectangulo-gris button");
