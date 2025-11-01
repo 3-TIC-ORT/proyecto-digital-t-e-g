@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-   let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-   let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    let paisesJugador1 = JSON.parse(localStorage.getItem('paisesJugador1')) || ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+    let paisesJugador2 = JSON.parse(localStorage.getItem('paisesJugador2')) || ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
  
     let fichas = JSON.parse(localStorage.getItem('fichas')) || {};
@@ -28,13 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
             boton.textContent = `${pais} (${cantidadFichas})`;
 
          
-            if (paisesJugador1.includes(pais)) {
-                boton.disabled = true;
-            } 
-         
-            else if (paisesJugador2.includes(pais)) {
-                boton.disabled = (fichasDisponibles === 0);
-            }
+             // Sólo permitir agregar fichas si el país pertenece a jugador 2
+             if (paisesJugador2.includes(pais)) {
+                 boton.disabled = (fichasDisponibles === 0);
+             } else {
+                 boton.disabled = true;
+             }
         });
     }
 
@@ -55,6 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
  
             localStorage.setItem('fichas', JSON.stringify(fichas));
             localStorage.setItem('fichasDisponiblesJugador2', fichasDisponibles);
+            // Guardar listas de países por si cambiaron en otra parte
+            localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
+            localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
             
             actualizarDisplay();
         } 

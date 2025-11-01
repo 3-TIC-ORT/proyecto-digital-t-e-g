@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let paisesJugador1 = ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-    let paisesJugador2 = ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    let paisesJugador1 = JSON.parse(localStorage.getItem('paisesJugador1')) || ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+    let paisesJugador2 = JSON.parse(localStorage.getItem('paisesJugador2')) || ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
 
     let fichas = JSON.parse(localStorage.getItem('fichas')) || {};
@@ -32,13 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
             boton.textContent = `${pais} (${cantidadFichas})`; 
 
-            if (paisesJugador2.includes(pais)) {
-                boton.disabled = true;
-            } 
-      
-            else if (paisesJugador1.includes(pais)) {
-
+            // Sólo permitir agregar fichas si el país pertenece a jugador 1
+            if (paisesJugador1.includes(pais)) {
                 boton.disabled = (fichasDisponibles === 0);
+            } else {
+                // Si no es tu país (pertenece al jugador 2 u otro), no podés modificarlo
+                boton.disabled = true;
             }
         });
     }
@@ -59,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
             localStorage.setItem('fichas', JSON.stringify(fichas));
             localStorage.setItem('fichasDisponiblesJugador1', fichasDisponibles);
+            // Guardar listas de países por si cambiaron en otra parte
+            localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
+            localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
             
        
             actualizarDisplay();
