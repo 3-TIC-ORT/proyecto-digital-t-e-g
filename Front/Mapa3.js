@@ -50,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       localStorage.setItem('fichas', JSON.stringify(fichas));
 
+      // 🔹 Mover aquí la limpieza para que se haga después de actualizar correctamente
       localStorage.removeItem('paisDefensor');
       localStorage.removeItem('resultadosBatalla');
       localStorage.removeItem('ganadorBatalla');
+      localStorage.removeItem('paisAtacante');
+      paisAtacante = null;
     }
   }
 
@@ -190,10 +193,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   inicializarFichas();
   calcularResultadosBatalla();
-
-  // 🔹 NUEVO: limpiar la selección solo después de resolver la batalla
-  localStorage.removeItem('paisAtacante');
-  localStorage.removeItem('paisDefensor');
-
   actualizarBotones();
 });
