@@ -38,7 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (fichas[paisAtacante] < 1) fichas[paisAtacante] = 1;
 
-      if (fichas[paisDefensor] <= 0) {
+      // 🔹 MODIFICADO: ahora también conquista si el defensor tiene 1 ficha y el atacante más
+      const fichasAtacante = fichas[paisAtacante] || 1;
+      const fichasDefensor = fichas[paisDefensor] || 1;
+      if (fichas[paisDefensor] <= 0 || (fichasDefensor === 1 && fichasAtacante > fichasDefensor)) {
         conquistarPais(paisDefensor, paisAtacante, fichas);
       }
 
