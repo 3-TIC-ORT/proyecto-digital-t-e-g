@@ -13,29 +13,10 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <h1>T.E.G. Digital - Prueba de Back-end</h1>
-
-    <section>
-        <h2>1. Guardar Fichas (POST: 'guardar')</h2>
-        <p>Ingrese los datos (formato de texto plano o JSON):</p>
-        <!-- Elemento de entrada para los datos a guardar -->
-        <textarea id="datos_input" rows="5" cols="50">
-{ "Jugador1": 15, "Jugador2": 12, "rondas": 4 }
-        </textarea>
-        <!-- Botón para iniciar el evento POST -->
-        <button id="btn_guardar">Enviar y Guardar Datos</button>
-        <p>Resultado de Guardado: <span id="resultado_guardar" style="font-weight: bold;">Esperando respuesta...</span></p>
-    </section>
-
-    <hr>
-
-    <section>
-        <h2>2. Cargar Fichas (GET: 'cargar')</h2>
-        <!-- Botón para iniciar el evento GET -->
-        <button id="btn_cargar">Solicitar Datos Guardados</button>
-        <p>Datos Cargados:</p>
-        <!-- Área para mostrar los datos que retorna el backend -->
-        <pre id="resultado_cargar" style="background-color: #eee; padding: 10px; border: 1px solid #ccc;">Esperando datos...</pre>
-    </section>
+    
+        <button id="btn_guardar"> Guardar Datos</button>
+       
+        <button id="btn_cargar">cargar Datos </button>
+       
 </body>
 </html>

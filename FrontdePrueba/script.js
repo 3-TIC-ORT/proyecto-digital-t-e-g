@@ -1,22 +1,33 @@
-const datosInput = document.getElementById("datos_input");
 const btnGuardar = document.getElementById("btn_guardar");
-const resultadoGuardar = document.getElementById("resultado_guardar");
 const btnCargar = document.getElementById("btn_cargar");
-const resultadoCargar = document.getElementById("resultado_cargar");
 
-connect2Server();
-btnGuardar.addEventListener('click', () => {
-    const datosAEnviar = datosInput.value;
+let argentina = {
+  fichas: 1,
+  color: "Rojo"
+}
 
-    resultadoGuardar.innerText = "Enviando datos al backend...";
+let rusia = {
+    fichas: 2,
+    color: "Azul"
+}
 
-    postEvent("guardar", datosAEnviar, (data) => {
-        resultadoGuardar.innerText = "¡Datos guardados con éxito en datos.json!";
-        console.log("Respuesta del servidor al guardar:", data);
+connect2Server(3001);
+
+let partida = [argentina, rusia];
+
+function guardar() {
+    estadoPartida = partida;
+    postEvent("guardar", estadoPartida);
+    console.log(estadoPartida)
+}
+
+function cargar() {
+    getEvent("cargar", (estadoPartida) => {
+        argentina = estadoPartida.argentina;
+        rusia = estadoPartida.rusia;
     });
-});
-btnCargar.addEventListener('click', () => {
-    resultadoCargar.innerText = "Solicitando datos al backend...";
+    console.log(estadoPartida)
+}
 
-    getEvent("cargar", cargarFichasResponseHandler);
-});
+btnGuardar.addEventListener("click", ()=> guardar());
+btnCargar.addEventListener("click", ()=> cargar());
