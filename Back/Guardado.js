@@ -1,11 +1,12 @@
 import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, startServer } from "soquetic";
 
-function guardarFichas(datos) {
-  JSON.stringify(fs.writeFileSync("datos.json", datos));
+function guardarFichas(estadoPartida) {
+  let estado = estadoPartida;
+  JSON.stringify(fs.writeFileSync("datos.json", estado));
 }
 
-subscribePOSTEvent("guardar", guardarFichas);
+subscribePOSTEvent("guardar", ()=> guardarFichas());
 
 function cargarFichas() {
     let data = JSON.parse(fs.readFileSync("datos.json", "utf-8"));
@@ -14,4 +15,4 @@ function cargarFichas() {
 
 subscribeGETEvent("cargar", cargarFichas);
 
-startServer();
+startServer(3001, true);
