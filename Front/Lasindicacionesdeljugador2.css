@@ -2,7 +2,7 @@ body {
     height: 100%;
     min-height: 100vh;
     margin: 0;
-    background-color: #5A4FD8;
+    background-color: #5A4FD8; /* color solicitado */
 }
 
 .transparente {
@@ -11,6 +11,8 @@ body {
     margin: 40px auto;
     padding: 30px 40px;    /* Más espacio interno */
     border-radius: 10px;
+    position: relative;
+    z-index: 1; /* asegurar que el contenido quede encima del logo */
 }
 
 h1 {
@@ -33,10 +35,26 @@ h1 {
     margin: 20px auto;      /* Centrado horizontal */
     transition: background-color 0.3s ease;
 }
-.logo {
-	max-width: 40px;
-	width: 40%;
-	height: auto;
-    margin-top: 350px;
-    margin-left: 15px;
+.logo2 {
+    position: fixed; /* fijada respecto a la ventana para estar detrás */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw; /* ocupa la mitad del ancho de la ventana */
+    max-width: 600px;
+    height: auto;
+    opacity: 0.14; /* un poco más visible */
+    filter: brightness(1.5); /* subir brillo de Logo2 */
+    z-index: 0; /* detrás del contenido (.transparente tiene z-index:1) */
+    pointer-events: none; /* no interferir con clicks */
+}
+
+.logo-small {
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    width: 60px;
+    height: auto;
+    z-index: 2; /* encima del contenido */
+    pointer-events: none;
 }

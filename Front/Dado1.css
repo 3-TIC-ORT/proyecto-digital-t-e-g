@@ -16,3 +16,21 @@ margin-top: 300px;}
  display: flex;
   flex-direction: column;
 margin-top: -60px;}
+
+/* Botón de cerrar (usa la imagen 'Cruz de cerrar.png') */
+.close-btn {
+  display: inline-block;
+  width: 48px; /* tamaño reducido */
+  height: 48px; /* tamaño reducido */
+  background-image: url("Imágenes/Cruz de cerrar.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* ajusta la imagen dentro del área */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none; /* para que el <a> no se vea subrayado */
+  position: relative;
+  top: -150px; /* mueve el botón 30px hacia arriba; ajusta este valor si quieres más/menos */
+  margin-left: 400px;
+}

@@ -45,16 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
     localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
 
-    alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
+  alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
 
-    localStorage.removeItem('paisAtacante');
-    paisAtacante = null;
-    actualizarBotones();
-    // Verificar objetivos después de la conquista
-    checkObjectives();
+  localStorage.removeItem('paisAtacante');
+  paisAtacante = null;
+  actualizarBotones();
+  checkObjectives();
   }
 
-  // 🔹 MODIFICADO: ahora permite conquistar cuando el defensor tiene 1 ficha y el atacante tiene más
   function verificarConquista(paisDefensor) {
     const fichasDefensor = fichasGuardadas[paisDefensor] || 1;
     const fichasAtacante = fichasGuardadas[paisAtacante] || 1;
@@ -104,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
     verificarAtacante();
     localStorage.removeItem('paisDefensor');
   }
-  // Verificar objetivos al cargar
   checkObjectives();
 });
 

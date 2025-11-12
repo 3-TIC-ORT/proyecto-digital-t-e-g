@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let paisAtacante = localStorage.getItem('paisAtacante');
 
-  // Si hay un paisAtacante guardado pero ya no pertenece a ninguna lista, limpiarlo (estado inconsistente)
   if (paisAtacante && !(paisesJugador1.includes(paisAtacante) || paisesJugador2.includes(paisAtacante))) {
     localStorage.removeItem('paisAtacante');
     paisAtacante = null;
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (fichas[paisAtacante] < 1) fichas[paisAtacante] = 1;
 
-      // 🔹 MODIFICADO: ahora también conquista si el defensor tiene 1 ficha y el atacante más
       const fichasAtacante = fichas[paisAtacante] || 1;
       const fichasDefensor = fichas[paisDefensor] || 1;
       if (fichas[paisDefensor] <= 0 || (fichasDefensor === 1 && fichasAtacante > fichasDefensor)) {
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       localStorage.setItem('fichas', JSON.stringify(fichas));
 
-      // 🔹 Mover aquí la limpieza para que se haga después de actualizar correctamente
       localStorage.removeItem('paisDefensor');
       localStorage.removeItem('resultadosBatalla');
       localStorage.removeItem('ganadorBatalla');
@@ -77,12 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
     localStorage.setItem('fichas', JSON.stringify(fichas));
 
-    alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
+  alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
 
-    localStorage.removeItem('paisAtacante');
-    paisAtacante = null;
-    // Verificar objetivos después de la conquista
-    checkObjectives();
+  localStorage.removeItem('paisAtacante');
+  paisAtacante = null;
+  checkObjectives();
   }
 
   function checkObjectives() {
@@ -142,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       boton.textContent = `${boton.id} (${cantidadFichas})`;
 
-      // Si no hay pais atacante seleccionado, permitir seleccionar países propios con >1 ficha
       if (!paisAtacante) {
         boton.disabled = !(paisesJugador1.includes(boton.id) && cantidadFichas > 1);
       } else {

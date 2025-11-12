@@ -14,35 +14,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    // 👇 Procesa INMEDIATAMENTE los resultados de Dado2 al volver al mapa
-    function procesarBatallaInmediata() {
+  function procesarBatallaInmediata() {
       const paisDefensor = localStorage.getItem('paisDefensor');
       const resultados = JSON.parse(localStorage.getItem('resultadosBatalla2'));
       const fichas = JSON.parse(localStorage.getItem('fichas')) || {};
   
-      // Solo procesar si hay un ataque pendiente con datos válidos
-      if (!paisAtacante || !paisDefensor || !resultados) return;
+  if (!paisAtacante || !paisDefensor || !resultados) return;
   
       const perdidasAtaque  = Number(resultados.fichasPerdidasAtaque)  || 0;
       const perdidasDefensa = Number(resultados.fichasPerdidasDefensa) || 0;
   
-      // Asegurar defaults
-      if (typeof fichas[paisAtacante] === 'undefined') fichas[paisAtacante] = 1;
-      if (typeof fichas[paisDefensor]  === 'undefined') fichas[paisDefensor]  = 1;
+  if (typeof fichas[paisAtacante] === 'undefined') fichas[paisAtacante] = 1;
+  if (typeof fichas[paisDefensor]  === 'undefined') fichas[paisDefensor]  = 1;
   
-      // Aplicar pérdidas de LA JUGADA ya realizada
-      fichas[paisAtacante] = Math.max(1, (fichas[paisAtacante] - perdidasAtaque));
-      fichas[paisDefensor]  = (fichas[paisDefensor]  - perdidasDefensa);
+  fichas[paisAtacante] = Math.max(1, (fichas[paisAtacante] - perdidasAtaque));
+  fichas[paisDefensor]  = (fichas[paisDefensor]  - perdidasDefensa);
   
-      // Regla de conquista: defensor <= 0, o defensor == 1 y atacante > 1
-      const fAt = fichas[paisAtacante];
-      const fDef = fichas[paisDefensor];
+  const fAt = fichas[paisAtacante];
+  const fDef = fichas[paisDefensor];
   
       if (fDef <= 0 || (fDef === 1 && fAt > 1)) {
         conquistarPais(paisDefensor, paisAtacante, fichas);
-        // Nota: conquistarPais ya limpia paisAtacante
       } else {
-        // Si no hubo conquista, pero el atacante quedó con 1, termina su ataque
         if (fAt <= 1) {
           alert(`${paisAtacante} se ha quedado con 1 ficha y ya no puede seguir atacando.`);
           localStorage.removeItem('paisAtacante');
@@ -51,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('fichas', JSON.stringify(fichas));
       }
   
-      // Limpiar SIEMPRE los datos de esa tirada (ya se procesó)
       localStorage.removeItem('paisDefensor');
       localStorage.removeItem('resultadosBatalla2');
       localStorage.removeItem('ganadorBatalla2');
@@ -72,10 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
       localStorage.setItem('fichas', JSON.stringify(fichas));
   
-      alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
-  
-      // Fin del ataque actual
-      localStorage.removeItem('paisAtacante');
+  alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
+
+  localStorage.removeItem('paisAtacante');
       paisAtacante = null;
   
       checkObjectives();
@@ -112,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cant < 1) { cant = 1; fichas[boton.id] = 1; }
         boton.textContent = `${boton.id} (${cant})`;
   
-        // Jugador 2 ataca en Mapa4
         if (!paisAtacante) {
           boton.disabled = !(paisesJugador2.includes(boton.id) && cant > 1);
         } else {
@@ -144,9 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   
-    // ORDEN CLAVE PARA QUE SEA "DE UNA"
     inicializarFichas();
-    procesarBatallaInmediata(); // ← procesa al entrar
+    procesarBatallaInmediata();
     actualizarBotones();
     checkObjectives();
   });

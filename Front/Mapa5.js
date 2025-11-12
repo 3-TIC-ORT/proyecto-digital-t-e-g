@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cant < 1) { cant = 1; fichas[boton.id] = 1; }
       boton.textContent = `${boton.id} (${cant})`;
 
-      // Jugador 2 ataca en Mapa5
       if (!paisAtacante) {
         boton.disabled = !(paisesJugador2.includes(boton.id) && cant > 1);
       } else {
@@ -135,9 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ORDEN CLAVE
   inicializarFichas();
-  procesarBatallaInmediata(); // ← conquista y alerta inmediatamente
+  procesarBatallaInmediata();
   actualizarBotones();
   checkObjectives();
 });

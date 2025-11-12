@@ -32,11 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
             boton.textContent = `${pais} (${cantidadFichas})`; 
 
-            // Sólo permitir agregar fichas si el país pertenece a jugador 1
             if (paisesJugador1.includes(pais)) {
                 boton.disabled = (fichasDisponibles === 0);
             } else {
-                // Si no es tu país (pertenece al jugador 2 u otro), no podés modificarlo
                 boton.disabled = true;
             }
         });
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
             localStorage.setItem('fichas', JSON.stringify(fichas));
             localStorage.setItem('fichasDisponiblesJugador1', fichasDisponibles);
-            // Guardar listas de países por si cambiaron en otra parte
             localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
             localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
             
@@ -73,8 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
  
-    actualizarDisplay();
-        // Verificar objetivos al cargar
+            actualizarDisplay();
         checkObjectives();
 });
 
