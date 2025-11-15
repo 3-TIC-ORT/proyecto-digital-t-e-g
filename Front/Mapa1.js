@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let paisesJugador1 =  ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-    let paisesJugador2 =  ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+    let paisesJugador1 = JSON.parse(localStorage.getItem('paisesJugador1')) || ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+    let paisesJugador2 = JSON.parse(localStorage.getItem('paisesJugador2')) || ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
 
     let fichas = JSON.parse(localStorage.getItem('fichas')) || {};
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         let botones = document.querySelectorAll(".rectangulo-gris button");
+        const ultimoConquistado = localStorage.getItem('ultimoConquistado');
+        const ultimoConquistador = localStorage.getItem('ultimoConquistador');
         
         botones.forEach(boton => {
             let pais = boton.id;
@@ -32,10 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
             let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
             boton.textContent = `${pais} (${cantidadFichas})`; 
 
-            if (paisesJugador1.includes(pais)) {
+            // Permitir que el Jugador 1 agregue fichas a sus países.
+            // Además permitir asignar fichas al último país conquistado por el Jugador 1 (resalta temporalmente).
+            if (paisesJugador1.includes(pais) || (ultimoConquistador === '1' && ultimoConquistado === pais)) {
                 boton.disabled = (fichasDisponibles === 0);
             } else {
                 boton.disabled = true;
+            }
+
+            // Resaltar el país recién conquistado por el Jugador 1
+            if (ultimoConquistador === '1' && ultimoConquistado === pais) {
+                boton.classList.add('nuevo-conquistado');
+            } else {
+                boton.classList.remove('nuevo-conquistado');
             }
         });
     }
@@ -43,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function manejarClickPais(event) {
         let pais = event.target.id;
+        const ultimoConquistado = localStorage.getItem('ultimoConquistado');
+        const ultimoConquistador = localStorage.getItem('ultimoConquistador');
         
         if (paisesJugador1.includes(pais) && fichasDisponibles > 0) {
             
@@ -61,6 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
        
             actualizarDisplay();
+
+            // Si le agregamos ficha al último país conquistado por el Jugador 1, limpiamos la marca
+            if (ultimoConquistador === '1' && ultimoConquistado === pais) {
+                localStorage.removeItem('ultimoConquistado');
+                localStorage.removeItem('ultimoConquistador');
+            }
         } 
     }
 

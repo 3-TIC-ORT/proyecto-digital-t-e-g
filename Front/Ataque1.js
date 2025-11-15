@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let fichasGuardadas = JSON.parse(localStorage.getItem('fichas')) || {};
   let botones = document.querySelectorAll(".rectangulo-gris button");
 
-  let paisesJugador1 =  ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
-  let paisesJugador2 =  ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
+  let paisesJugador1 = JSON.parse(localStorage.getItem('paisesJugador1')) || ["USA", "Rusia", "Egipto", "Etiopía", "Uruguay", "Argentina", "España", "Francia", "Granbretaña", "Canadá"];
+  let paisesJugador2 = JSON.parse(localStorage.getItem('paisesJugador2')) || ["Alemania", "Sudáfrica", "China", "Japón", "Armenia", "India", "Australia", "México", "Brasil", "Italia"];
 
   let paisAtacante = localStorage.getItem('paisAtacante') || null;
 
@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function conquistarPais(paisPerdedor, paisGanador) {
+    // Determinar quién fue el atacante antes de modificar las listas
+    let atacanteEsJugador1 = paisesJugador1.includes(paisGanador);
+
     if (paisesJugador1.includes(paisPerdedor)) {
       paisesJugador1 = paisesJugador1.filter(p => p !== paisPerdedor);
       paisesJugador2.push(paisPerdedor);
@@ -44,6 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem('fichas', JSON.stringify(fichasGuardadas));
     localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
     localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
+
+    // Guardar el último país conquistado y quién lo conquistó (1 o 2)
+    try {
+      localStorage.setItem('ultimoConquistado', paisPerdedor);
+      localStorage.setItem('ultimoConquistador', atacanteEsJugador1 ? '1' : '2');
+    } catch (e) {
+      console.warn('No se pudo guardar ultimoConquistado en localStorage', e);
+    }
 
   alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let paisesJugador1 = ["USA","Rusia","Egipto","Etiopía","Uruguay","Argentina","España","Francia","Granbretaña","Canadá"];
-  let paisesJugador2 =  ["Alemania","Sudáfrica","China","Japón","Armenia","India","Australia","México","Brasil","Italia"];
+  let paisesJugador1 = JSON.parse(localStorage.getItem('paisesJugador1')) || ["USA","Rusia","Egipto","Etiopía","Uruguay","Argentina","España","Francia","Granbretaña","Canadá"];
+  let paisesJugador2 = JSON.parse(localStorage.getItem('paisesJugador2')) || ["Alemania","Sudáfrica","China","Japón","Armenia","India","Australia","México","Brasil","Italia"];
   let todosLosPaises = [...paisesJugador1, ...paisesJugador2];
 
   let paisAtacante = localStorage.getItem('paisAtacante');
