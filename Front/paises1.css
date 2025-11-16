@@ -48,18 +48,31 @@
     border-radius: 8px;
 }
 
+/* Reverso que se coloca encima de la imagen (misma medida) */
+.card .card-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 3; /* arriba de la etiqueta */
+}
+
 .card-label{
     position: absolute;
-    bottom: 8px; /* bajar un poco la etiqueta */
+    bottom: 8px; /* casi al final de la carta */
     left: 50%;
     transform: translateX(-50%);
     color: #000000; /* texto negro */
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.6);
     pointer-events: none;
     font-size: 14px;
     text-align: center;
     width: 90%;
+    z-index: 2; /* debajo de la card-back */
 }
 
 /* Botón siguiente (si no existe ya) */

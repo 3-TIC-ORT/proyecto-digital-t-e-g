@@ -1,0 +1,5 @@
+img {
+  max-width: 100%; /* La imagen nunca será más ancha que el contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  display: block; /* Elimina espacio extra debajo de la imagen */
+}
