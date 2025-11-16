@@ -21,6 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function moverFicha(origen, destino, fichas) {
+    if (!fichas || typeof fichas[origen] === 'undefined') return false;
+    const cantidad = fichas[origen] || 1;
+    if (cantidad <= 1) {
+      alert('No puedes mover una ficha desde un país que tiene sólo 1 ficha.');
+      return false;
+    }
+
+    fichas[origen] = Math.max(1, cantidad - 1);
+    fichas[destino] = (fichas[destino] || 1) + 1;
+
+    localStorage.setItem('fichas', JSON.stringify(fichas));
+    localStorage.removeItem('paisAtacante');
+    paisAtacante = null;
+    actualizarBotones();
+    return true;
+  }
+
   function calcularResultadosBatalla() {
     let paisDefensor = localStorage.getItem('paisDefensor');
     let resultadosBatalla = JSON.parse(localStorage.getItem('resultadosBatalla'));
@@ -144,10 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const atacanteEsP1 = paisesJugador1.includes(paisAtacante);
         const atacanteEsP2 = paisesJugador2.includes(paisAtacante);
 
+        // Cuando hay un país seleccionado como atacante, permitir tanto
+        // atacar a países del oponente como reagrupar hacia países propios.
         if (atacanteEsP1) {
-          boton.disabled = !paisesJugador2.includes(boton.id);
+          boton.disabled = !(paisesJugador2.includes(boton.id) || paisesJugador1.includes(boton.id));
         } else if (atacanteEsP2) {
-          boton.disabled = !paisesJugador1.includes(boton.id);
+          boton.disabled = !(paisesJugador1.includes(boton.id) || paisesJugador2.includes(boton.id));
         } else {
           boton.disabled = true;
         }
@@ -181,6 +201,26 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } else {
+        // Si el botón clickeado pertenece al mismo jugador que el atacante,
+        // entonces realizamos una reagrupación (mover 1 ficha).
+        if (paisesJugador1.includes(boton.id)) {
+          // Si clickeó el mismo país seleccionado, anulamos la selección.
+          if (boton.id === paisAtacante) {
+            localStorage.removeItem('paisAtacante');
+            paisAtacante = null;
+            actualizarBotones();
+            return;
+          }
+
+          // Mover ficha de paisAtacante -> boton.id
+          const moved = moverFicha(paisAtacante, boton.id, fichasGuardadas);
+          if (moved) {
+            actualizarBotones();
+          }
+          return;
+        }
+
+        // Si pertenece al oponente, iniciamos ataque como antes.
         if (paisesJugador2.includes(boton.id)) {
           localStorage.setItem('paisDefensor', boton.id);
           window.location.href = "Dado1.html";
