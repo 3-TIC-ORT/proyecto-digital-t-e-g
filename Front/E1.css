@@ -1,41 +1,62 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
 body {
     height: 100%;
     min-height: 100vh;
     margin: 0;
     background-color: #EB5A5A;
+    display: flex;
+    align-items: center; /* centrar vertical */
+    justify-content: center; /* centrar horizontal */
+    height: 100vh;
 }
 
 .transparente {
     background-color: #EDE8D0A8;
-    max-width: 800px;      /* Más ancho que antes */
-    margin: 40px auto;
-    padding: 30px 40px;    /* Más espacio interno */
+    max-width: 700px;      /* reducido un poco */
+    margin: 0 16px; /* centrado por el flex del body */
+    padding: 20px 30px;    /* menos espacio interno */
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
-    font-size: 18px;       /* Corrección de 'front-size' y ajuste del tamaño */
+    font-size: 16px;       /* un poco más pequeño */
     text-align: center;
-    color: black;
+    color: #FFFFFF; /* texto blanco en el div */
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 400;
     margin: 0;
 }
 .b {
-    padding: 15px 30px;
-    background-color: white;
-    color: black;
-    border: none;
+    padding: 12px 24px;
+    background-color: #FFFFFF !important; /* totalmente blanco */
+    background-image: none !important;
+    color: #000000; /* letras negras en el botón */
+    border: 2px solid #3A7B22; /* borde verde */
+    opacity: 1 !important; /* asegurar sin transparencia */
     border-radius: 30px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
-    display: block;         /* Ocupa línea completa */
-    margin: 20px auto;      /* Centrado horizontal */
+    display: inline-block;
+    margin: 0; /* quitamos márgenes automáticos: botón será fixed */
+    position: fixed; /* colocar en esquina inferior derecha */
+    right: 24px;
+    bottom: 24px;
+    z-index: 999; /* encima de otros elementos */
+    font-family: 'Inknut Antiqua', serif;
+    font-weight: 400;
     transition: background-color 0.3s ease;
 }
 .logo {
-	max-width: 40px;
-	width: 40%;
-	height: auto;
-    margin-top: 350px;
-    margin-left: 15px;
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    width: 60px;
+    max-width: 60px;
+    height: auto;
+    z-index: 2;
 }

@@ -6,34 +6,57 @@ body {
     position: relative;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
+/* Centrar el contenedor principal en la ventana */
+body {
+    display: flex;
+    flex-direction: column; /* apilar elementos verticalmente */
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* espacio entre el div y el botón */
+}
+
 .transparente {
     background-color: #EDE8D0A8;
     max-width: 800px;      /* Más ancho que antes */
-    margin: 40px auto;
+    margin: 0 16px; /* centrado por el flex del body, con separación lateral */
     padding: 30px 40px;    /* Más espacio interno */
     border-radius: 10px;
     position: relative;
     z-index: 1; /* asegurar que el contenido quede encima del logo */
+
+    display: flex; /* centrar contenido interno */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 }
 
 h1 {
     font-size: 18px;       /* Corrección de 'front-size' y ajuste del tamaño */
     text-align: center;
-    color: black;
+    color: #FFFFFF; /* texto blanco en el div */
+    font-family: 'Inknut Antiqua', serif; /* tipografía solicitada */
+    font-weight: 400;
     margin: 0;
 }
 
 .b {
     padding: 15px 30px;
-    background-color: white;
-    color: black;
-    border: none;
+    background-color: #FFFFFF !important; /* totalmente blanco, sin transparencia */
+    background-image: none !important;
+    color: #000000; /* letras negras en el botón */
+    border: 2px solid #3A7B22; /* borde solicitado */
+    opacity: 1 !important; /* asegurar que no tenga transparencia */
+    font-family: 'Inknut Antiqua', serif; /* tipografía solicitada */
+    font-weight: 400;
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
     text-align: center;
-    display: block;         /* Ocupa línea completa */
-    margin: 20px auto;      /* Centrado horizontal */
+    display: inline-block;  /* mejor para centrar dentro del flex */
+    margin: 8px 0;          /* separación vertical ligera */
     transition: background-color 0.3s ease;
 }
 .logo2 {
@@ -41,11 +64,11 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50vw; /* ocupa la mitad del ancho de la ventana */
+    width: 45vw; /* ocupa menos ancho para dejar contenido legible */
     max-width: 600px;
     height: auto;
-    opacity: 0.14; /* un poco más visible */
-    filter: brightness(1.5); /* subir brillo de Logo2 */
+    opacity: 0.6; /* opacidad aumentada para mayor visibilidad */
+    filter: brightness(1.45); /* ligero ajuste de brillo */
     z-index: 0; /* detrás del contenido (.transparente tiene z-index:1) */
     pointer-events: none; /* no interferir con clicks */
 }
