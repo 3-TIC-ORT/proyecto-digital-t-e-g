@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem('paisesJugador1', JSON.stringify(paisesJugador1));
     localStorage.setItem('paisesJugador2', JSON.stringify(paisesJugador2));
 
-    // Guardar el último país conquistado y quién lo conquistó (1 o 2)
+
     try {
       localStorage.setItem('ultimoConquistado', paisPerdedor);
       localStorage.setItem('ultimoConquistador', atacanteEsJugador1 ? '1' : '2');

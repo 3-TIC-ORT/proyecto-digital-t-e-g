@@ -124,8 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!paisAtacante) {
         boton.disabled = !(paisesJugador2.includes(boton.id) && cant > 1);
       } else {
-        // Cuando hay un país seleccionado, permitir reagrupar hacia propios
-        // o seleccionar enemigos para atacar.
+     
         const atacanteEsP2 = paisesJugador2.includes(paisAtacante);
         const atacanteEsP1 = paisesJugador1.includes(paisAtacante);
         if (atacanteEsP2) {
@@ -154,9 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } else {
-        // Si el país clickeado es propio, reagrupamos (mover 1 ficha).
+
         if (paisesJugador2.includes(boton.id)) {
-          // si clickeó el mismo país seleccionado, anulamos la selección
+   
           if (boton.id === paisAtacante) {
             localStorage.removeItem('paisAtacante');
             paisAtacante = null;
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // Si pertenece al oponente, iniciamos ataque como antes.
+
         if (paisesJugador1.includes(boton.id)) {
           localStorage.setItem('paisDefensor', boton.id);
           window.location.href = "Dado2.html";

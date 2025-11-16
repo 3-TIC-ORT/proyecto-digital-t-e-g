@@ -34,15 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let cantidadFichas = fichas[pais] !== undefined ? fichas[pais] : 1;
             boton.textContent = `${pais} (${cantidadFichas})`; 
 
-            // Permitir que el Jugador 1 agregue fichas a sus países.
-            // Además permitir asignar fichas al último país conquistado por el Jugador 1 (resalta temporalmente).
+
             if (paisesJugador1.includes(pais) || (ultimoConquistador === '1' && ultimoConquistado === pais)) {
                 boton.disabled = (fichasDisponibles === 0);
             } else {
                 boton.disabled = true;
             }
 
-            // Resaltar el país recién conquistado por el Jugador 1
+    
             if (ultimoConquistador === '1' && ultimoConquistado === pais) {
                 boton.classList.add('nuevo-conquistado');
             } else {
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
        
             actualizarDisplay();
 
-            // Si le agregamos ficha al último país conquistado por el Jugador 1, limpiamos la marca
+          
             if (ultimoConquistador === '1' && ultimoConquistado === pais) {
                 localStorage.removeItem('ultimoConquistado');
                 localStorage.removeItem('ultimoConquistador');
