@@ -48,6 +48,20 @@
     border-radius: 8px;
 }
 
+/* Reverso que se coloca encima de la imagen (misma medida) */
+.card .card-back{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 2;
+}
+
 .card-label{
     position: absolute;
     bottom: 8px; /* bajar un poco la etiqueta */

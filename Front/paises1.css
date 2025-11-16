@@ -75,6 +75,8 @@
     z-index: 2; /* debajo de la card-back */
 }
 
+/* Mejora visual: fondo semitransparente para la etiqueta para mayor legibilidad */
+
 /* Botón siguiente (si no existe ya) */
 .b{
     padding: 10px 18px;
