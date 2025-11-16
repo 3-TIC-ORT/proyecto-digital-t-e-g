@@ -1,16 +1,18 @@
 body {
    
    
-     background-color: green;
+     background-color: #012F1C;
 }
 
 
-h1{color: red;}
+h1{color: blue;}
 .Farme{
-    width: 1350px;
-    height: 620px;
+    width: 1355px;
+    height: 670px;
+    margin-left: -10px;
+    margin-top: -10px;
   }
-  header{margin-top: -600px;
+  header{margin-top: -650px;
     margin-left: 50px; }
 .Canadá {
   position: absolute;
@@ -28,7 +30,7 @@ h1{color: red;}
 
 .USA {
   position: absolute;
-  top: 330px;     
+  top: 350px;     
   left: 269px;
   background-color: #D89A61;
   color: black;
@@ -44,7 +46,7 @@ h1{color: red;}
 
 .México {
   position: absolute;
-  top: 360px;     
+  top: 385px;     
   left: 360px;
   background-color: #D89A61;
   color: black;
@@ -58,7 +60,7 @@ h1{color: red;}
 }
 .Argentina{
     position: absolute;
-  top: 460px;     
+  top: 490px;     
   left: 520px;
   background-color: #6BB682;
   color: black;
@@ -73,7 +75,7 @@ h1{color: red;}
     transform: rotate(90deg);
 }
 .Brasil{   position: absolute;
-  top: 420px;     
+  top: 430px;     
   left: 600px;
   background-color: #6BB682;
   color: black;
@@ -87,7 +89,7 @@ h1{color: red;}
   height: 10px; 
  transform: rotate(90deg);}
  .Uruguay{    position: absolute;
-  top: 455px;     
+  top: 475px;     
   left: 550px;
   background-color: #6BB682;
   color: black;
@@ -101,7 +103,7 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
   .Egipto{position: absolute;
-  top: 430px;     
+  top: 455px;     
   left: 930px;
   background-color: #FDB456;
   color: black;
@@ -115,7 +117,7 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
   .Etiopía{position: absolute;
-  top: 450px;     
+  top: 480px;     
   left: 900px;
   background-color: #FDB456;
   color: black;
@@ -129,7 +131,7 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
   .Sudáfrica{position: absolute;
-  top: 500px;     
+  top: 520px;     
   left: 910px;
   background-color: #FDB456;
   color: black;
@@ -143,9 +145,9 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
 .Australia{position: absolute;
-  top: 470px;     
+  top: 500px;     
   left: 1150px;
-  background-color: F3B0E0;
+  background-color: #F3B0E0;
   color: black;
   font-weight: bold;
   border: none;
@@ -157,8 +159,8 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
   .Granbretaña{position: absolute;
-  top: 320px;     
-  left: 720px;
+  top: 340px;     
+  left: 710px;
   background-color: #EECA93;
   color: black;
   font-weight: bold;
@@ -172,7 +174,7 @@ h1{color: red;}
   transform: rotate(340deg);
   position: absolute;}
   .España{position: absolute;
-  top: 380px;     
+  top: 400px;     
   left: 700px;
   background-color: #EECA93;
   color: black;
@@ -188,7 +190,7 @@ h1{color: red;}
   position: absolute;}
   .Francia{position: absolute;
   top: 350px;     
-  left: 780px;
+  left: 770px;
   background-color: #EECA93;
   color: black;
   font-weight: bold;
@@ -203,7 +205,7 @@ h1{color: red;}
   position: absolute;}
   .Alemania{position: absolute;
   top: 350px;     
-  left: 850px;
+  left: 820px;
   background-color: #EECA93;
   color: black;
   font-weight: bold;
@@ -217,7 +219,7 @@ h1{color: red;}
   position: absolute;}
   .Italia{position: absolute;
   top: 400px;     
-  left: 850px;
+  left: 840px;
   background-color: #EECA93;
   color: black;
   font-weight: bold;
@@ -231,7 +233,7 @@ h1{color: red;}
   position: absolute;}
   .Rusia{position: absolute;
   top: 300px;     
-  left: 930px;
+  left: 920px;
   background-color: #EECA93;
   color: black;
   font-weight: bold;
@@ -244,7 +246,7 @@ h1{color: red;}
   height: 7px; 
   position: absolute;}
   .Japón{position: absolute;
-  top: 250px;     
+  top: 255px;     
   left: 1170px;
   background-color: #CAA265;
   color: black;
@@ -273,7 +275,7 @@ h1{color: red;}
   height: 20px; 
   position: absolute;}
   .India{position: absolute;
-  top: 370px;     
+  top: 380px;     
   left: 1090px;
   background-color: #CAA265;
   color: black;
@@ -287,7 +289,7 @@ h1{color: red;}
   height: 10px; 
   position: absolute;}
   .Armenia{position: absolute;
-  top: 390px;     
+  top: 400px;     
   left: 1000px;
   background-color: #CAA265;
   color: black;
@@ -300,4 +302,8 @@ h1{color: red;}
     width: 10px;       
   height: 10px; 
   position: absolute;}
-h1{color: blue;}
+  .siguiente{  border-radius: 8px;
+  border-color: #3A7B22;
+margin-top: 490px;
+margin-left: 1250px;
+}
