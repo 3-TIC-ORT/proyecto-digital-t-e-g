@@ -10,7 +10,7 @@ html,body{
     height:100%;
     margin:0;
     font-family: 'Inknut Antiqua', serif;
-    background: linear-gradient(180deg, var(--green) 0%, #0a3b28 100%);
+    background: var(--green);
     color: #ffffff;
 }
 
@@ -90,5 +90,64 @@ html,body{
 @media (max-width:520px){
     .card{padding:18px;}
     .card h1{font-size:20px}
+}
+
+/* Nuevo diseño específico para Reglas */
+.site-header{
+    padding-top:28px;
+    text-align:center;
+}
+.site-title{
+    margin:0;
+    color:#ffffff;
+    font-size:48px;
+    font-weight:400;
+    font-family: 'Inknut Antiqua', serif;
+    letter-spacing:1px;
+}
+
+.container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 20px 80px 20px;
+}
+
+.paper{
+    width:100%;
+    max-width:920px;
+    background:#ffffff;
+    color:#012F1C;
+    border-radius:12px;
+    padding:28px 36px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    line-height:1.6;
+    font-size:16px;
+}
+
+.paper p{margin:0 0 12px 0}
+
+.back-btn{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#ffffff;
+    color:var(--green);
+    padding:10px 14px;
+    border-radius:28px;
+    text-decoration:none;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    border:2px solid rgba(0,0,0,0.06);
+    font-weight:700;
+}
+
+.back-btn .btn-icon{width:20px;height:20px;display:block}
+
+@media (max-width:520px){
+    .site-title{font-size:28px}
+    .paper{padding:18px;font-size:15px}
 }
 
