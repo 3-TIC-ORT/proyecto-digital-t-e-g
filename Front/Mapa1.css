@@ -32,7 +32,7 @@ h1{color: red;}
   position: absolute;
   top: 350px;     
   left: 269px;
-  background-color: #D89A61;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -307,3 +307,11 @@ h1{color: red;}
 margin-top: 490px;
 margin-left: 1250px;
 }
+.imgUSA{
+  margin-top: 262px;
+  margin-left:263px;
+  width: 28px;
+  height: 28px;
+}
+
+
