@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   checkObjectives();
 });
 
-function checkObjectives() {
+const checkObjectives = () => {
   const continentMap = {
     'USA': 'America', 'Uruguay': 'America', 'Argentina': 'America', 'Canadá': 'America', 'México': 'America', 'Brasil': 'America',
     'España': 'Europa', 'Francia': 'Europa', 'Granbretaña': 'Europa', 'Italia': 'Europa', 'Alemania': 'Europa', 'Rusia': 'Europa',
@@ -128,33 +128,22 @@ function checkObjectives() {
   const p1 = JSON.parse(localStorage.getItem('paisesJugador1')) || [];
   const p2 = JSON.parse(localStorage.getItem('paisesJugador2')) || [];
 
-  function contarPorContinente(lista, continente) {
-    return lista.filter(p => continentMap[p] === continente).length;
-  }
-
-  function poseeContinenteCompleto(lista, continente) {
+  const contarPorContinente = (lista, continente) => lista.filter(p => continentMap[p] === continente).length;
+  const poseeContinenteCompleto = (lista, continente) => {
     const todos = Object.keys(continentMap).filter(p => continentMap[p] === continente);
     return todos.every(p => lista.includes(p));
-  }
+  };
 
-  const p1TieneAustralia = p1.includes('Australia');
-  const p1AsiaCount = contarPorContinente(p1, 'Asia');
-  const p1TieneAmerica = poseeContinenteCompleto(p1, 'America');
-  const p1TieneEuropa = poseeContinenteCompleto(p1, 'Europa');
-  const jugador1Cumple = p1TieneAustralia && p1AsiaCount >= 3 && p1TieneAmerica && p1TieneEuropa;
-
-  const p2TieneAfrica = poseeContinenteCompleto(p2, 'Africa');
-  const p2TieneAsia = poseeContinenteCompleto(p2, 'Asia');
-  const p2TieneAustralia = p2.includes('Australia');
-  const p2EuropaCount = contarPorContinente(p2, 'Europa');
-  const p2AmericaCount = contarPorContinente(p2, 'America');
-  const jugador2Cumple = p2TieneAfrica && p2TieneAsia && p2TieneAustralia && p2EuropaCount >= 4 && p2AmericaCount >= 4;
+  const jugador1Cumple = p1.includes('Australia') && contarPorContinente(p1, 'Asia') >= 3 && poseeContinenteCompleto(p1, 'America') && poseeContinenteCompleto(p1, 'Europa');
+  const jugador2Cumple = poseeContinenteCompleto(p2, 'Africa') && poseeContinenteCompleto(p2, 'Asia') && p2.includes('Australia') && contarPorContinente(p2, 'Europa') >= 4 && contarPorContinente(p2, 'America') >= 4;
 
   if (jugador1Cumple) {
     localStorage.setItem('ganadorJuego', '1');
     window.location.href = 'ganadordeljuego1.html';
-  } else if (jugador2Cumple) {
+    return;
+  }
+  if (jugador2Cumple) {
     localStorage.setItem('ganadorJuego', '2');
     window.location.href = 'ganadordeljuago2.html';
   }
-}
+};

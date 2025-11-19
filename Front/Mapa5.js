@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkObjectives();
   }
 
-  function checkObjectives() {
+  const checkObjectives = () => {
     const continentMap = {
       'USA':'America','Uruguay':'America','Argentina':'America','Canadá':'America','México':'America','Brasil':'America',
       'España':'Europa','Francia':'Europa','Granbretaña':'Europa','Italia':'Europa','Alemania':'Europa','Rusia':'Europa',
@@ -110,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const j1 = p1.includes('Australia') && contar(p1,'Asia')>=3 && completo(p1,'America') && completo(p1,'Europa');
     const j2 = completo(p2,'Africa') && completo(p2,'Asia') && p2.includes('Australia') && contar(p2,'Europa')>=4 && contar(p2,'America')>=4;
 
-    if (j1){ localStorage.setItem('ganadorJuego','1'); window.location.href='ganadordeljuego1.html'; }
-    else if (j2){ localStorage.setItem('ganadorJuego','2'); window.location.href='ganadordeljuago2.html'; }
-  }
+    if (j1){ localStorage.setItem('ganadorJuego','1'); window.location.href='ganadordeljuego1.html'; return; }
+    if (j2){ localStorage.setItem('ganadorJuego','2'); window.location.href='ganadordeljuago2.html'; }
+  };
 
   function actualizarBotones() {
     const fichas = JSON.parse(localStorage.getItem('fichas')) || {};
