@@ -14,19 +14,6 @@ h1{color: red;}
   }
   header{margin-top: -650px;
     margin-left: 50px; }
-.Canadá {
-  position: absolute;
-  top: 230px;     
-  left: 260px;
-  background-color: #D89A61;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
 
 .USA {
   position: absolute;
@@ -40,15 +27,29 @@ h1{color: red;}
   padding: 4px 8px;
   cursor: pointer;
   width: 20px;      
-  height: 25px;       
+  height: 25px;   
+  z-index: 2;    
 }
 
+.Canadá {
+  position: absolute;
+  top: 230px;     
+  left: 260px;
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 2; 
+}
 
 .México {
   position: absolute;
   top: 385px;     
   left: 360px;
-  background-color: #D89A61;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -57,12 +58,13 @@ h1{color: red;}
   cursor: pointer;
    font-size: 10px; 
    transform: rotate(20deg);
-}
+   z-index: 2; 
+  }
 .Argentina{
-    position: absolute;
-  top: 490px;     
-  left: 520px;
-  background-color: #6BB682;
+  position: absolute;
+  top: 530px;     
+  left: 490px;
+  background-color:transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -70,14 +72,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-    transform: rotate(90deg);
+  transform: rotate(-90deg);
+  z-index: 2; 
 }
-.Brasil{   position: absolute;
+
+.Brasil{   
+  position: absolute;
   top: 430px;     
-  left: 600px;
-  background-color: #6BB682;
+  left: 550px;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -85,13 +90,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
- transform: rotate(90deg);}
- .Uruguay{    position: absolute;
+  z-index: 2; 
+}
+  
+ 
+ .Uruguay{    
+  position: absolute;
   top: 475px;     
   left: 550px;
-  background-color: #6BB682;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -99,13 +108,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-  .Egipto{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Egipto{
+  position: absolute;
   top: 455px;     
   left: 930px;
-  background-color: #FDB456;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -113,13 +126,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-  .Etiopía{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Etiopía{
+  position: absolute;
   top: 480px;     
   left: 900px;
-  background-color: #FDB456;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -127,13 +144,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-  .Sudáfrica{position: absolute;
-  top: 520px;     
-  left: 910px;
-  background-color: #FDB456;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Sudáfrica{
+  position: absolute;
+  top: 530px;     
+  left: 900px;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -141,13 +162,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-.Australia{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+
+.Australia{
+  position: absolute;
   top: 500px;     
   left: 1150px;
-  background-color: #F3B0E0;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -155,13 +180,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-  .Granbretaña{position: absolute;
-  top: 340px;     
+  position: absolute;
+  z-index: 2;
+}
+  
+.Granbretaña{
+  position: absolute;
+  top: 335px;     
   left: 710px;
-  background-color: #EECA93;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -172,11 +201,15 @@ h1{color: red;}
     width: 7px;       
   height: 7px; 
   transform: rotate(340deg);
-  position: absolute;}
-  .España{position: absolute;
-  top: 400px;     
+  position: absolute;
+  z-index: 2;
+}
+  
+.España{
+  position: absolute;
+  top: 405px;     
   left: 700px;
-  background-color: #EECA93;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -184,14 +217,18 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 7px; 
-    width: 7px;       
+  width: 7px;       
   height: 7px; 
   transform: rotate(340deg);
-  position: absolute;}
-  .Francia{position: absolute;
-  top: 350px;     
+  position: absolute;
+  z-index: 2;
+}
+  
+.Francia{
+  position: absolute;
+  top: 370px;     
   left: 770px;
-  background-color: #EECA93;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -199,14 +236,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 7px; 
-    width: 7px;       
+  width: 7px;       
   height: 7px; 
   transform: rotate(340deg);
-  position: absolute;}
-  .Alemania{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Alemania{position: absolute;
   top: 350px;     
-  left: 820px;
-  background-color: #EECA93;
+  left: 830px;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -214,13 +254,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 7px; 
-    width: 7px;       
+  width: 7px;       
   height: 7px; 
-  position: absolute;}
-  .Italia{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Italia{
+  position: absolute;
   top: 400px;     
   left: 840px;
-  background-color: #EECA93;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -228,27 +272,35 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 7px; 
-    width: 7px;       
+  width: 7px;       
   height: 7px; 
-  position: absolute;}
-  .Rusia{position: absolute;
-  top: 300px;     
-  left: 920px;
-  background-color: #EECA93;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Rusia{
+  position: absolute;
+  top: 290px;     
+  left: 900px;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
   border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
-  font-size: 7px; 
-    width: 7px;       
+  font-size: 15px; 
+  width: 7px;       
   height: 7px; 
-  position: absolute;}
-  .Japón{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.Japón{
+  position: absolute;
   top: 255px;     
   left: 1170px;
-  background-color: #CAA265;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -256,14 +308,18 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 6px; 
-    width: 6px;       
+  width: 6px;       
   height: 6px; 
-    transform: rotate(46deg);
-  position: absolute;}
-  .China{position: absolute;
+  transform: rotate(46deg);
+  position: absolute;
+  z-index: 2;
+}
+  
+.China{
+  position: absolute;
   top: 300px;     
   left: 1100px;
-  background-color: #CAA265;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -271,13 +327,17 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 20px; 
-    width: 20px;       
+  width: 20px;       
   height: 20px; 
-  position: absolute;}
-  .India{position: absolute;
+  position: absolute;
+  z-index: 2;
+}
+  
+.India{
+  position: absolute;
   top: 380px;     
   left: 1090px;
-  background-color: #CAA265;
+  background-color: transparent;
   color: black;
   font-weight: bold;
   border: none;
@@ -285,33 +345,196 @@ h1{color: red;}
   padding: 5px 10px;
   cursor: pointer;
   font-size: 10px; 
-    width: 10px;       
+  width: 10px;       
   height: 10px; 
-  position: absolute;}
-  .Armenia{position: absolute;
-  top: 400px;     
-  left: 1000px;
-  background-color: #CAA265;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 10px; 
-    width: 10px;       
-  height: 10px; 
-  position: absolute;}
-  .siguiente{  border-radius: 8px;
-  border-color: #3A7B22;
-margin-top: 490px;
-margin-left: 1250px;
+  position: absolute;
+  z-index: 2;
 }
+  
+.Armenia{
+  position: absolute;
+  top: 410px;     
+  left: 990px;
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px; 
+  width: 10px;       
+  height: 10px; 
+  position: absolute;
+  z-index: 2;
+}
+
 .imgUSA{
-  margin-top: 262px;
-  margin-left:263px;
+  position: absolute;
+  margin-top: 263px;
+  margin-left:264px;
   width: 28px;
   height: 28px;
+  z-index: 1;
 }
 
+.imgCanadá{
+  position: absolute;
+  top: 229px;     
+  left: 317px;
+  width: 28px;
+  height: 28px;
+  z-index: 1;
+}
 
+.imgMéxico{
+  margin-top: 290px;
+  margin-left:391px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+}
+
+.imgBrasil{
+  position: absolute;
+  top: 441px;     
+  left: 554px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+}
+.imgArgentina{
+  position: absolute;
+  top: 516px;     
+  left: 506px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+}
+.imgUruguay{
+  position: absolute;
+  top: 488px;     
+  left: 556px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgEgipto{
+  position: absolute;
+  top: 467px;     
+  left: 936px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgEtiopía{
+  position: absolute;
+  top: 493px;     
+  left: 906px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgSudáfrica{
+  position: absolute;
+  top: 543px;     
+  left: 907px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgAustralia{
+  position: absolute;
+  top: 513px;     
+  left: 1156px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgGranbretaña{
+  position: absolute;
+  top: 343px;     
+  left: 721px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgEspaña{
+  position: absolute;
+  top: 414px;     
+  left: 711px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgFrancia{
+  position: absolute;
+  top: 378px;     
+  left: 781px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgAlemania{
+  position: absolute;
+  top: 360px;     
+  left: 837px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgItalia{
+  position: absolute;
+  top: 411px;     
+  left: 846px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgRusia{
+  position: absolute;
+  top: 306px;     
+  left: 904px;
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+}
+.imgJapón{
+  position: absolute;
+  top: 263px;     
+  left: 1167px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.imgChina{
+  position: absolute;
+  top: 322px;     
+  left: 1102px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+.imgIndia{
+  position: absolute;
+  top: 393px;     
+  left: 1096px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.imgArmenia{
+  position: absolute;
+  top: 423px;     
+  left: 996px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+
+.siguiente{  
+  border-radius: 8px;
+  border-color: #3A7B22;
+  margin-top: 490px;
+  margin-left: 1250px;
+}
