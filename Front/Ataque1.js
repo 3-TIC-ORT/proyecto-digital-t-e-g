@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn('No se pudo guardar ultimoConquistado en localStorage', e);
     }
 
-  alert(`${paisGanador} ha conquistado ${paisPerdedor}!`);
+  alert(paisGanador + " ha conquistado " + paisPerdedor);
 
   localStorage.removeItem('paisAtacante');
   paisAtacante = null;
