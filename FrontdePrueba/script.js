@@ -16,17 +16,20 @@ connect2Server(3001);
 let partida = [argentina, rusia];
 
 function guardar() {
-    estadoPartida = partida;
-    postEvent("guardar", estadoPartida);
-    console.log(estadoPartida)
+    postEvent("guardar", partida, (respuestaBackend) => {
+        console.log("Guardado exitoso:", respuestaBackend);
+    });
 }
 
 function cargar() {
-    getEvent("cargar", (estadoPartida) => {
-        argentina = estadoPartida.argentina;
-        rusia = estadoPartida.rusia;
+    getEvent("cargar", (dataRecibida) => {
+        argentina = dataRecibida[0];
+        rusia = dataRecibida[1];
+
+        console.log("Datos cargados exitosamente:");
+        console.log("Argentina:", argentina);
+        console.log("Rusia:", rusia);
     });
-    console.log(estadoPartida)
 }
 
 btnGuardar.addEventListener("click", ()=> guardar());
