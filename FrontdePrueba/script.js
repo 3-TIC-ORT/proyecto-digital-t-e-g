@@ -1,36 +1,29 @@
-const btnGuardar = document.getElementById("btn_guardar");
-const btnCargar = document.getElementById("btn_cargar");
+connect2Server();
 
-let argentina = {
-  fichas: 1,
-  color: "Rojo"
+function conquistar() {
+  postEvent("conquistarPais", {
+    atacanteId: 1,
+    defensorId: 2,
+    pais: "Chile"
+  }, (respuesta) => {
+    document.getElementById("resultado").innerText =
+      "Conquista hecha. Puntos: " + respuesta.puntosActuales;
+  });
 }
 
-let rusia = {
-    fichas: 2,
-    color: "Azul"
+function finalizar() {
+  postEvent("finalizarTurno", {
+    jugadorId: 1
+  }, (respuesta) => {
+    document.getElementById("resultado").innerText =
+      "Refuerzos: " + respuesta.refuerzosEntregados +
+      " | Total fichas: " + respuesta.fichasTotales;
+  });
 }
 
-connect2Server(3001);
-
-let partida = [argentina, rusia];
-
-function guardar() {
-    postEvent("guardar", partida, (respuestaBackend) => {
-        console.log("Guardado exitoso:", respuestaBackend);
-    });
+function verPuntos() {
+  getEvent("puntosActuales?jugadorId=1", (respuesta) => {
+    document.getElementById("resultado").innerText =
+      "Puntos actuales: " + respuesta.puntos;
+  });
 }
-
-function cargar() {
-    getEvent("cargar", (dataRecibida) => {
-        argentina = dataRecibida[0];
-        rusia = dataRecibida[1];
-
-        console.log("Datos cargados exitosamente:");
-        console.log("Argentina:", argentina);
-        console.log("Rusia:", rusia);
-    });
-}
-
-btnGuardar.addEventListener("click", ()=> guardar());
-btnCargar.addEventListener("click", ()=> cargar());

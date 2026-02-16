@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T.E.G. Digital - Prueba de Back-end (SoqueTIC)</title>
-
-    <!-- Importación de librerías esenciales según las fuentes -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
-
-    <!-- Enlace a nuestro script principal -->
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <title>Test Backend TEG</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
-    
-        <button id="btn_guardar"> Guardar Datos</button>
-       
-        <button id="btn_cargar">cargar Datos </button>
-       
+
+<h1>Test Backend TEG</h1>
+
+<button onclick="conquistar()">Conquistar País</button>
+<button onclick="finalizar()">Finalizar Turno</button>
+<button onclick="verPuntos()">Ver Puntos</button>
+
+<p id="resultado"></p>
+
 </body>
 </html>
