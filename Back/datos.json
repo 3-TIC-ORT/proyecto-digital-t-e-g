@@ -4,8 +4,6 @@
       "id": 1,
       "nombre": "Jugador 1",
       "paises": [
-        "Argentina",
-        "Brasil",
         "Chile",
         "Chile",
         "Chile",
@@ -17,7 +15,7 @@
         "Chile",
         "Chile"
       ],
-      "fichasDisponibles": 53,
+      "fichasDisponibles": 72,
       "puntos": 1000
     },
     {
