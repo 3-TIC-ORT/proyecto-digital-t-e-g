@@ -1,22 +1,12 @@
 {
+  "turnoActual": 1,
   "jugadores": [
     {
       "id": 1,
       "nombre": "Jugador 1",
-      "paises": [
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile",
-        "Chile"
-      ],
-      "fichasDisponibles": 72,
-      "puntos": 1000
+      "paises": [],
+      "fichasDisponibles": 0,
+      "puntos": 0
     },
     {
       "id": 2,

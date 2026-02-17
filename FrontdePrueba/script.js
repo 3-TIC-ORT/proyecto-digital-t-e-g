@@ -1,47 +1,60 @@
 connect2Server();
 
-function conquistar() {
-  postEvent("conquistarPais", {
-    atacanteId: 1,
-    defensorId: 2,
-    pais: "Chile"
-  }, (respuesta) => {
+function mostrar(texto) {
+  document.getElementById("resultado").innerText = texto;
+}
 
+function conquistar() {
+  postEvent("conquistarPais", { pais: "Chile" }, (respuesta) => {
     if (respuesta.mensaje) {
-      document.getElementById("resultado").innerText = respuesta.mensaje;
+      mostrar(respuesta.mensaje);
       return;
     }
-
-    document.getElementById("resultado").innerText =
-      "Conquista hecha. Puntos actuales: " + respuesta.puntosActuales;
+    mostrar("Conquista hecha. Puntos actuales: " + (respuesta.puntosActuales || 0) + " | Turno actual: " + (respuesta.turnoActual || "N/A"));
   });
 }
 
 function finalizar() {
-  postEvent("finalizarTurno", {
-    jugadorId: 1
-  }, (respuesta) => {
-
+  postEvent("finalizarTurno", {}, (respuesta) => {
     if (respuesta.mensaje) {
-      document.getElementById("resultado").innerText = respuesta.mensaje;
+      mostrar(respuesta.mensaje);
       return;
     }
-
-    document.getElementById("resultado").innerText =
-      "Refuerzos recibidos: " + respuesta.refuerzosEntregados +
-      " | Fichas totales: " + respuesta.fichasTotales;
+    mostrar("Refuerzos recibidos: " + (respuesta.refuerzosEntregados || 0) + " | Fichas totales: " + (respuesta.fichasTotales || 0) + " | Turno siguiente: " + (respuesta.turnoSiguiente || "N/A"));
   });
 }
 
-function verPuntos() {
-  getEvent("puntosActuales?jugadorId=1", (respuesta) => {
+function verPuntosJugador1() {
+  getEvent("puntosJugador?jugadorId=1", (r) => {
+    if (r.mensaje) { mostrar(r.mensaje); return; }
+    mostrar("Puntos Jugador 1: " + (r.puntos || 0));
+  });
+}
 
-    if (respuesta.mensaje) {
-      document.getElementById("resultado").innerText = respuesta.mensaje;
-      return;
-    }
+function verPuntosJugador2() {
+  getEvent("puntosJugador?jugadorId=2", (r) => {
+    if (r.mensaje) { mostrar(r.mensaje); return; }
+    mostrar("Puntos Jugador 2: " + (r.puntos || 0));
+  });
+}
 
-    document.getElementById("resultado").innerText =
-      "Puntos actuales: " + respuesta.puntos;
+function verFichasJugador1() {
+  getEvent("fichasJugador?jugadorId=1", (r) => {
+    if (r.mensaje) { mostrar(r.mensaje); return; }
+    mostrar("Fichas Jugador 1: " + (r.fichas || 0));
+  });
+}
+
+function verFichasJugador2() {
+  getEvent("fichasJugador?jugadorId=2", (r) => {
+    if (r.mensaje) { mostrar(r.mensaje); return; }
+    mostrar("Fichas Jugador 2: " + (r.fichas || 0));
+  });
+}
+
+function reiniciar() {
+  postEvent("reiniciarPartida", {}, (r) => {
+    if (r.ok) { mostrar("Partida reiniciada. Turno actual: " + (r.turnoActual || "N/A")); return; }
+    mostrar(r.mensaje || "Error al reiniciar");
   });
 }
